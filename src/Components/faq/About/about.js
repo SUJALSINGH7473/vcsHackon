@@ -1,7 +1,7 @@
 // src/About/about.js
 import React from 'react';
 import AccordionItem from '../AccordionItem'; // Corrected path to AccordionItem
-import data from '../../data/db.json'; // Corrected path to db.json
+import data from '../data/db.json'; // Corrected path to db.json
 
 export default function About() {
   return (

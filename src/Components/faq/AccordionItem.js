@@ -19,7 +19,7 @@ const AccordionItem = ({ faq }) => {
         </div>
       </div>
       {isActive && (
-        <div className="text-[#006D6C] pt-5 lg:text-2xl xl:text-3xl md:text-xl text-base">
+        <div className="text-[#006D6C] pt-5 lg:text-2xl xl:text-2xl md:text-xl text-base">
           {answer}
         </div>
       )}
