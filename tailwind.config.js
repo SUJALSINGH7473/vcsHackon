@@ -1,9 +1,16 @@
-export const purge = ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'];
-export const darkMode = false;
-export const theme = {
-  extend: {},
+module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {
+      fontFamily: {
+        lobster: ['Lobster', 'cursive'],
+        merriweather: ['Merriweather', 'serif'],
+      },
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
 };
-export const variants = {
-  extend: {},
-};
-export const plugins = [];
