@@ -1,8 +1,10 @@
+// src/components/pages/SignUp.js
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
@@ -12,11 +14,14 @@ const SignUpSchema = Yup.object().shape({
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
 });
 
-function SignUp() {
+function SignUp({ toggleForm }) {
+  const navigate = useNavigate();
+
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       console.log('Sign up successful');
+      navigate('/main'); // Redirect to main page
     } catch (error) {
       setErrors({ formError: 'Failed to create account. Please try again.' });
       console.error('Error signing up:', error);

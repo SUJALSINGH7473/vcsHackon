@@ -1,16 +1,24 @@
-
-
 // src/App.js
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import SignIn from './Components/pages/SignIn';
 import SignUp from './Components/pages/SignUp';
 import Welcome from './Components/pages/Welcome';
-
+import MainPage from './Components/pages/MainPage';
 import './App.css';
 
-
-
 function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/main" element={<MainPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(true);
 
   const toggleForm = () => {
@@ -25,7 +33,7 @@ function App() {
         </div>
         <div className="p-8 flex flex-col justify-center shadow-lg rounded-lg bg-white">
           <h2 className="text-2xl font-bold text-center">{isSignUp ? 'Sign Up' : 'Sign In'}</h2>
-          {isSignUp ? <SignUp /> : <SignIn />}
+          {isSignUp ? <SignUp toggleForm={toggleForm} /> : <SignIn toggleForm={toggleForm} />}
           <div className="text-center mt-4">
             {isSignUp ? (
               <p>
@@ -47,8 +55,6 @@ function App() {
       </div>
     </div>
   );
-  
 }
-
 
 export default App;
