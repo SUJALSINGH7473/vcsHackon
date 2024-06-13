@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../utils/firebase';
+import { auth } from '../../utils/firebase';
 
 function SignIn() {
   const [form, setForm] = useState({
@@ -32,7 +32,7 @@ function SignIn() {
 
   return (
     <form onSubmit={handleSubmit} className="p-4 max-w-sm mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Sign In</h2>
+      
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <input 
         type="email"

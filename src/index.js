@@ -1,11 +1,10 @@
-// index.js or App.js
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { initializeApp } from 'firebase/app';
-import { firebaseConfig } from './utils/firebase'; 
+import './index.css';
 import App from './App';
+import { app } from './utils/firebase'; // Ensure to import from the correct path
 
-// Initialize Firebase
-initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app);
 
 ReactDOM.render(<App />, document.getElementById('root'));
