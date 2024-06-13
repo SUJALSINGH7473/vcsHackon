@@ -6,6 +6,7 @@ import SignUp from './Components/pages/SignUp';
 import Welcome from './Components/pages/Welcome';
 import MainPage from './Components/pages/MainPage';
 import './App.css';
+import FeedbackPage from './Components/pages/feedbackPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthPage />} />
         <Route path="/main" element={<MainPage />} />
+        <Route path='/feedback' element={<FeedbackPage/>}/>
       </Routes>
     </Router>
   );
