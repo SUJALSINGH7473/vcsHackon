@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Phone, User, Bot, Play, StopCircle, RotateCw, Send } from 'lucide-react';
 
+
 function CallPopup({ onClose }) {
   return (
     <div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>

@@ -1,0 +1,18 @@
+.category-card {
+    perspective: 1000px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .category-card img {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .category-card:hover img {
+    transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05);
+  }
+  
