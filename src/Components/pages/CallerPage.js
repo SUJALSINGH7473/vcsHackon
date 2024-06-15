@@ -10,10 +10,15 @@ import refundImage from '../../utils/images/6.png';
 import sellingImage from '../../utils/images/7.png';
 import generalQueriesImage from '../../utils/images/3.png';
 import CallPopup from './callPopup';
+import { useReactMediaRecorder } from 'react-media-recorder';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function MainPage() {
   const [showPopup, setshowPopup] = useState(false);
+  const mediaRecorder = useReactMediaRecorder({ audio: true });
   return (
     <div className="min-h-screen bg-gray-100">
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       {/* Header */}
       <div className="relative h-80 bg-blue-500 text-white p-6 flex items-center justify-between overflow-visible mt-6">
         <div className="z-10 pl-20">
@@ -55,7 +60,7 @@ function MainPage() {
       <div className="px-4 mt-12">
         <About />
       </div>
-      {showPopup && <CallPopup onClose={()=>setshowPopup(false)}/>}
+      {showPopup && <CallPopup onClose={()=>setshowPopup(false)} mediaRecorder={mediaRecorder}/>}
     </div>
   );
 }
