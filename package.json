@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-sdk": "^2.1641.0",
     "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
     "firebase": "^10.12.2",
     "formik": "^2.4.6",
     "lucide-react": "^0.394.0",

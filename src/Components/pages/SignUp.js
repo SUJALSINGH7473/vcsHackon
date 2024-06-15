@@ -1,7 +1,10 @@
 import React from 'react';
+import bcrypt from 'bcryptjs';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
 import { auth } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
@@ -13,13 +16,69 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
 });
+const states = [
+  // States from India
+  'Maharashtra',
+  'Uttar Pradesh',
+  'Bihar',
+  'West Bengal',
+  'Madhya Pradesh',
+  'Rajasthan',
+  'Karnataka',
+  'Gujarat',
+  'Andhra Pradesh',
+  'Odisha',
+  
+  // States from USA
+  'California',
+  'Texas',
+  'Florida',
+  'New York',
+  'Pennsylvania',
+  'Illinois',
+  'Ohio',
+  'Georgia',
+  'North Carolina',
+  'Michigan',
+  
+  // States from Australia
+  'New South Wales',
+  'Victoria',
+  'Queensland',
+  'Western Australia',
+  'South Australia',
+  'Tasmania',
+  'Australian Capital Territory',
+  'Northern Territory',
+  'Norfolk Island',
+  'Christmas Island',
+];
+
+const countries = ['India', 'USA', 'Australia'];
 
 function SignUp({ toggleForm }) {
   const navigate = useNavigate();
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      // Hash the password before saving it to Firestore
+      const hashedPassword = await bcrypt.hash(values.password, 10);
+
+      // Create a user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      const user = userCredential.user;
+
+      // Save user data to Firestore
+      await setDoc(doc(db, 'Users', user.uid), {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        contactNumber: values.contactNumber,
+        email: values.email,
+        password: hashedPassword,
+        state: values.state,
+        country: values.country
+      });
+
       console.log('Sign up successful');
       navigate('/main'); // Redirect to main page
     } catch (error) {
@@ -29,6 +88,7 @@ function SignUp({ toggleForm }) {
     setSubmitting(false);
   };
 
+
   return (
     <Formik
       initialValues={{
@@ -36,7 +96,9 @@ function SignUp({ toggleForm }) {
         lastName: '',
         contactNumber: '',
         email: '',
-        password: ''
+        password: '',
+        state: '',
+        country: ''
       }}
       validationSchema={SignUpSchema}
       onSubmit={handleSubmit}
@@ -90,6 +152,38 @@ function SignUp({ toggleForm }) {
               className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
             />
             <ErrorMessage name="password" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
+          </div>
+          <div className="flex gap-4 mb-4">
+            <div className="w-1/2">
+              <Field
+                as="select"
+                name="state"
+                className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+              >
+                <option value="" label="Select State" />
+                {states.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="state" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
+            </div>
+            <div className="w-1/2">
+              <Field
+                as="select"
+                name="country"
+                className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+              >
+                <option value="" label="Select Country" />
+                {countries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="country" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
+            </div>
           </div>
           <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600 transition-colors duration-300 text-sm md:text-base" disabled={isSubmitting}>
             {isSubmitting ? 'Creating Account...' : 'Create Account'}
