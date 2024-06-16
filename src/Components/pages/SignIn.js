@@ -29,8 +29,13 @@ function SignIn({ toggleForm }) {
       const user = userCredential.user;
       console.log(user);
 
+      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      const user = userCredential.user;
+      console.log(user.uid);
+      localStorage.setItem('uid', user.uid);
+      // Handle successful signin
       console.log('Sign in successful');
-      navigate('/main', { state: { user } }); // Pass user credentials to the main page
+      navigate('/main'); // Pass user credentials to the main page
     } catch (error) {
       setError('Failed to sign in. Please check your credentials and try again.');
       console.error('Error signing in:', error);
