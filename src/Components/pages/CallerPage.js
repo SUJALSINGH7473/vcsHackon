@@ -13,6 +13,9 @@ import sellingImage from '../../utils/images/7.png';
 import generalQueriesImage from '../../utils/images/3.png';
 
 import CallPopup from './callPopup';
+import { useReactMediaRecorder } from 'react-media-recorder';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MainPage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -43,8 +46,10 @@ function MainPage() {
     }
   }, [selectedCategory]);
 
+  const mediaRecorder = useReactMediaRecorder({ audio: true });
   return (
     <div className="min-h-screen bg-gray-100">
+      <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <div className="relative h-80 bg-blue-500 text-white p-6 flex items-center justify-between overflow-visible mt-10">
         <div className="pl-20">
           <h1 className="text-5xl font-bold block">HOW CAN WE</h1>
@@ -93,8 +98,7 @@ function MainPage() {
       <div className="px-4 mt-12">
         <About />
       </div>
-
-      {showPopup && <CallPopup onClose={() => setShowPopup(false)} />}
+      {showPopup && <CallPopup onClose={()=>setShowPopup(false)} mediaRecorder={mediaRecorder}/>}
     </div>
   );
 }
