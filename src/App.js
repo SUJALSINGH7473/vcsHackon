@@ -5,6 +5,7 @@ import SignIn from './Components/pages/SignIn';
 import SignUp from './Components/pages/SignUp';
 import Welcome from './Components/pages/Welcome';
 import MainPage from './Components/pages/CallerPage.js';
+import Dashboard from './Components/dashboard/index.js';
 import './App.css';
 import FeedbackPage from './Components/pages/feedbackPage';
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<AuthPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path='/feedback' element={<FeedbackPage/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
     </Router>
   );

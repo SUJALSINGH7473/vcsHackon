@@ -25,6 +25,7 @@ function MainPage() {
 
   const fetchCategoryData = async (category) => {
     try {
+    
       console.log(category);
       const querySnapshot = await getDocs(collection(db, 'Queries'));
       querySnapshot.forEach((doc) => {

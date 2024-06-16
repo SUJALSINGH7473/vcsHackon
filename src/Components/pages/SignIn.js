@@ -25,10 +25,12 @@ function SignIn({ toggleForm }) {
     e.preventDefault();
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, form.email, form.password);
-      // Handle successful signin
+      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      const user = userCredential.user;
+      console.log(user);
+
       console.log('Sign in successful');
-      navigate('/main'); 
+      navigate('/main', { state: { user } }); // Pass user credentials to the main page
     } catch (error) {
       setError('Failed to sign in. Please check your credentials and try again.');
       console.error('Error signing in:', error);
