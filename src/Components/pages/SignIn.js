@@ -25,7 +25,10 @@ function SignIn({ toggleForm }) {
     e.preventDefault();
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, form.email, form.password);
+      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      const user = userCredential.user;
+      console.log(user.uid);
+      localStorage.setItem('uid', user.uid);
       // Handle successful signin
       console.log('Sign in successful');
       navigate('/main'); 

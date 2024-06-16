@@ -80,6 +80,7 @@ function SignUp({ toggleForm }) {
       });
 
       console.log('Sign up successful');
+      localStorage.setItem('uid', user.uid);
       navigate('/main'); // Redirect to main page
     } catch (error) {
       setErrors({ formError: 'Failed to create account. Please try again.' });
