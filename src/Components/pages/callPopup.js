@@ -1,19 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Phone,
-  User,
-  Bot,
-  Play,
-  StopCircle,
-  RotateCw,
-  Send,
-  Volume2,
+import {  Phone,User,Bot,Play,StopCircle,RotateCw,Send,Volume2,
 } from "lucide-react";
 import axios from "axios";
 import AWS from "aws-sdk";
 import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
+import { useNavigate } from 'react-router-dom';
 
 // Configure AWS
 AWS.config.update({
@@ -25,6 +18,7 @@ AWS.config.update({
 });
 
 function CallPopup({ onClose, mediaRecorder }) {
+  const navigate = useNavigate();
   const [audioData, setAudioData] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isBotSpeaking, setIsBotSpeaking] = useState(false);
@@ -143,6 +137,7 @@ const sendAudio = async () => {
     stopBotSpeaking();
     setAudioData(null);
     onClose();
+    navigate('/feedback')
   };
 
   const handleVolumeButtonClick = () => {

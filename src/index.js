@@ -8,3 +8,5 @@ import { app } from './utils/firebase'; // Ensure to import from the correct pat
 console.log('Firebase initialized:', app);
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+
