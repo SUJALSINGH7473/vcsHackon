@@ -53,20 +53,19 @@ class Navbar extends React.Component {
 
         {/* Navigation Buttons */}
         <div className="flex justify-end mr-14 space-x-16 text-lg flex-grow">
-      <a href="/" className="flex items-center text-gray-700 hover:text-black transition duration-300">
-        <FaHome className="mr-2 text-gray-500 hover:text-black transition duration-300" />
-        <span className="hover:underline">Home</span>
+      <a href="/" className="flex items-center text-gray-700 hover:text-black transition duration-300 underline">
+        <FaHome className="mr-2 text-gray-500" />
+        <span className="font-bold">Home</span>
       </a>
       <a href="/about" className="flex items-center text-gray-700 hover:text-black transition duration-300">
-        <FaInfoCircle className="mr-2 text-gray-500 hover:text-black transition duration-300" />
-        <span className="hover:underline">About Us</span>
+        <FaInfoCircle className="mr-2 text-gray-500" />
+        <span>About Us</span>
       </a>
       <a href="/privacy" className="flex items-center text-gray-700 hover:text-black transition duration-300">
-        <FaLock className="mr-2 text-gray-500 hover:text-black transition duration-300" />
-        <span className="hover:underline">Privacy Policy</span>
+        <FaLock className="mr-2 text-gray-500" />
+        <span>Privacy Policy</span>
       </a>
     </div>
-
         {/* User Profile and Logout Button */}
         <div className="flex items-center space-x-16 text-xl font-lobster font-bold">
           <div className="flex items-center space-x-2">
