@@ -10,6 +10,22 @@ function FeedbackPage() {
     setServiceRating(rating);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await addDoc(collection(db, 'Feedback'), {
+  //       serviceRating,
+  //       recommendation,
+  //       responseTime,
+  //       issueResolution,
+  //       additionalComments,
+  //     });
+  //     alert('Feedback submitted successfully!');
+  //   } catch (error) {
+  //     console.error('Error submitting feedback:', error);
+  //   }
+  // };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white m-4 md:m-10">
       <div className="max-w-4xl w-full bg-gray-100 rounded-lg shadow-lg flex flex-col md:flex-row overflow-hidden">
@@ -34,7 +50,7 @@ function FeedbackPage() {
               <div className="flex justify-around">
                 <FaSmile
                   className={`h-8 w-8 cursor-pointer ${serviceRating === 1 ? 'text-green-500' : 'text-gray-400'}`}
-                  title="Excellent"
+                  title="Awesome"
                   onClick={() => handleServiceRating(1)}
                 />
                 <FaRegSmile
@@ -54,28 +70,13 @@ function FeedbackPage() {
                 />
                 <FaRegFrown
                   className={`h-8 w-8 cursor-pointer ${serviceRating === 5 ? 'text-red-500' : 'text-gray-400'}`}
-                  title="Very Poor"
+                  title="Terrible"
                   onClick={() => handleServiceRating(5)}
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="responseTime">
-                Response Time:
-              </label>
-              <select
-                id="responseTime"
-                name="responseTime"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              >
-                <option>5 - Excellent</option>
-                <option>4 - Good</option>
-                <option>3 - Average</option>
-                <option>2 - Poor</option>
-                <option>1 - Very Poor</option>
-              </select>
-            </div>
+            
 
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="issueResolution">
@@ -86,11 +87,11 @@ function FeedbackPage() {
                 name="issueResolution"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               >
-                <option>5 - Excellent</option>
+                <option>5 - Awesome</option>
                 <option>4 - Good</option>
                 <option>3 - Average</option>
                 <option>2 - Poor</option>
-                <option>1 - Very Poor</option>
+                <option>1 - Terrible</option>
               </select>
             </div>
 
@@ -121,7 +122,7 @@ function FeedbackPage() {
                   id="shareLink"
                   name="shareLink"
                   className="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value="https://yourwebsite.com/share"
+                  value="http://localhost:3000/"
                   readOnly
                 />
                 <button
