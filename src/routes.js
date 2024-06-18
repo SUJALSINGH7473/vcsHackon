@@ -10,8 +10,8 @@ import PrivateRoute from './PrivateRoute';
 import NotFound from './Components/pages/NotFound'; 
 import Contact from './Components/pages/Contact';
 import About from './Components/pages/About';
-import AdminPage from './Components/admin';
 import PrivacyPolicy from './Components/pages/PrivacyPolicy';
+import AdminFeedbackPage from './Components/admin';
 
 const AppRoutes = () => (
   <Routes>
@@ -21,7 +21,7 @@ const AppRoutes = () => (
     <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />
     <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
     <Route path="/privacy" element={<PrivateRoute><PrivacyPolicy /></PrivateRoute>} />
-    <Route path="/admin" component={AdminPage} />
+    <Route path="/admin" element={<AdminFeedbackPage/>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );

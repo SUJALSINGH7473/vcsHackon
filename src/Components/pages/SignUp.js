@@ -16,45 +16,9 @@ const SignUpSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required')
 });
-const states = [
-  // States from India
-  'Maharashtra',
-  'Uttar Pradesh',
-  'Bihar',
-  'West Bengal',
-  'Madhya Pradesh',
-  'Rajasthan',
-  'Karnataka',
-  'Gujarat',
-  'Andhra Pradesh',
-  'Odisha',
-  
-  // States from USA
-  'California',
-  'Texas',
-  'Florida',
-  'New York',
-  'Pennsylvania',
-  'Illinois',
-  'Ohio',
-  'Georgia',
-  'North Carolina',
-  'Michigan',
-  
-  // States from Australia
-  'New South Wales',
-  'Victoria',
-  'Queensland',
-  'Western Australia',
-  'South Australia',
-  'Tasmania',
-  'Australian Capital Territory',
-  'Northern Territory',
-  'Norfolk Island',
-  'Christmas Island',
-];
 
-const countries = ['India', 'USA', 'Australia'];
+
+const countries = ['India', 'USA', 'Australia','UK','Canada'];
 
 function SignUp({ toggleForm }) {
   const navigate = useNavigate();
@@ -154,7 +118,23 @@ function SignUp({ toggleForm }) {
             />
             <ErrorMessage name="password" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
           </div>
-          <div className="flex gap-4 mb-4">
+          <div className="mb-4">
+          <Field
+                as="select"
+                name="country"
+                className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
+              >
+                <option value="" label="Select Country" />
+                {countries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </Field>
+              <ErrorMessage name="country" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
+          </div>
+
+          {/* <div className="flex gap-4 mb-4">
             <div className="w-1/2">
               <Field
                 as="select"
@@ -185,15 +165,13 @@ function SignUp({ toggleForm }) {
               </Field>
               <ErrorMessage name="country" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
             </div>
-          </div>
+          </div> */}
           <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600 transition-colors duration-300 text-sm md:text-base" disabled={isSubmitting}>
             {isSubmitting ? 'Creating Account...' : 'Create Account'}
           </button>
           <div className="text-center mt-4">
             <p className="text-gray-600 text-xs md:text-sm">Or</p>
-            <button type="button" className="bg-gray-100 text-black py-2 px-4 rounded w-full mt-2 hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center text-sm md:text-base">
-              <FaFacebookF className="mr-2" /> Sign up with Facebook
-            </button>
+          
             <button type="button" className="bg-gray-100 text-black py-2 px-4 rounded w-full mt-2 hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center text-sm md:text-base">
               <FaGoogle className="mr-2" /> Sign up with Google
             </button>
