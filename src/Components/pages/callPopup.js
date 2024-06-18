@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
 import { useNavigate } from 'react-router-dom';
-
+import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
 // Configure AWS
 AWS.config.update({
   region: "us-east-1",
@@ -17,19 +18,58 @@ AWS.config.update({
   ),
 });
 
-function CallPopup({ onClose, mediaRecorder }) {
+function CallPopup({ onClose, mediaRecorder, category}) {
   const navigate = useNavigate();
   const [audioData, setAudioData] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isBotSpeaking, setIsBotSpeaking] = useState(false);
-
+  const [sessionId, setSessionId] = useState(null);
   const { startRecording, stopRecording, mediaBlobUrl } = mediaRecorder;
 
   // References for audio elements
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
 
+  const createSession = async()=>{
+     // Retrieve the user UID from localStorage
+     const userUID = localStorage.getItem('uid');
+        
+     if (!userUID) {
+         console.error("User UID not found in localStorage");
+         return;
+     }
+
+     try {
+         // Reference to the sessions collection
+         const sessionsCollectionRef = collection(db, 'sessions');
+
+         // Create a new session document with automatically generated ID
+         const newSession = {
+             questions: [],
+             answers: [],
+             embeddings: [],
+             category: 0
+         };
+         const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+
+         // Update the user's session array with the new session reference
+         const userRef = doc(db, 'Users', userUID);
+         await updateDoc(userRef, {
+             session: arrayUnion(sessionDocRef)
+         });
+
+         // Log the session ID for debugging purposes
+         const sessionId = sessionDocRef.id;
+         console.log('New session ID:', sessionId);
+         setSessionId(sessionId);
+        }
+        catch (error) {
+          console.error("Error creating new session:", error);
+      }
+  }
   useEffect(() => {
+    //create the session id 
+    createSession();
     if (popupAudioRef.current) {
       popupAudioRef.current.play();
       setIsBotSpeaking(true); // Start bot speaking when popup opens
@@ -58,44 +98,79 @@ function CallPopup({ onClose, mediaRecorder }) {
     console.log("Recording discarded");
   };
 
-  const sendAudio = async () => {
-    if (!mediaBlobUrl) {
+const sendAudio = async () => {
+  if (!mediaBlobUrl) {
       console.error("No audio data to send");
       toast.error("No audio data to send");
       return;
-    }
+  }
 
-    try {
+  try {
       toast.info("Processing...");
-      console.log("send ke andar vali yeh hai", mediaBlobUrl);
+      console.log("Preparing to send audio file from:", mediaBlobUrl);
+
+      // Fetch the audio blob from the mediaBlobUrl
       const response = await fetch(mediaBlobUrl);
       const blob = await response.blob();
-      const arrayBuffer = await blob.arrayBuffer();
-      console.log(arrayBuffer);
-      const s3 = new AWS.S3();
-      const params = {
-        Bucket: "hackon",
-        Key: `audio-${Date.now()}.mp3`,
-        Body: arrayBuffer,
-        ContentType: "audio/mpeg",
-      };
+      const audioBlob = new Blob([blob], { type: 'audio/mpeg' });
+      // Create a FormData object and append the audio file
+      const formData = new FormData();
+      formData.append("file", audioBlob, "recording.mp3");
 
-      const uploadResponse = await s3.upload(params).promise();
-      const audioUrl = uploadResponse.Location;
+      // Retrieve the user ID from localStorage
+      const uid = localStorage.getItem("uid");
 
-      await axios.post("https://your-backend-api.com/upload", { audio_link:audioUrl });
+      // Append additional required data to formData
+      formData.append("category", category);
+      formData.append("uid", uid);
+      formData.append("sessionId", sessionId);
+      // Send the audio file to the backend using Axios
+      const backendUrl = "https://hackon-slva.onrender.com/get_response";
+      const audioResponse = await axios.post(backendUrl, formData, {
+          headers: {
+              "Content-Type": "multipart/form-data"
+          },
+          responseType: 'arraybuffer' // Expect a binary response
+      });
+
       toast.success("Audio sent successfully!");
 
-      // Simulate bot speaking after sending the audio
+      // Check for errors in the response
+      if (audioResponse.data.Error) {
+          console.error("Error fetching the result");
+          toast.error('Error fetching the result');
+          return;
+      }
+
+      // Get the binary audio data from the response
+      const audioArrayBuffer = audioResponse.data;
+
+      // Create a blob from the received audio data
+      const audioBlobResponse = new Blob([audioArrayBuffer], { type: 'audio/mpeg' });
+
+      // Create an object URL for the audio blob
+      const audioUrlObject = URL.createObjectURL(audioBlobResponse);
+
+      // Set the state to indicate the bot is speaking
       setIsBotSpeaking(true);
-      setTimeout(() => setIsBotSpeaking(false), 2000); // Bot speaks for 2 seconds
-      // Reset state after sending
+
+      // Create an audio element and play the received audio
+      const audio = new Audio(audioUrlObject);
+      audio.play();
+
+      // After the audio ends, reset the state
+      audio.onended = () => {
+          setIsBotSpeaking(false);
+          URL.revokeObjectURL(audioUrlObject); // Revoke the object URL to free up memory
+      };
+
+      // Reset the audio data state
       setAudioData(null);
-    } catch (error) {
+  } catch (error) {
       console.error("Error uploading or sending audio:", error);
       toast.error("Failed to send audio");
-    }
-  };
+  }
+};
 
   const handleClose = () => {
     stopRecording();
