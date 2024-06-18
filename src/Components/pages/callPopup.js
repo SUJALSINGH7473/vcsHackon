@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
 import { useNavigate } from 'react-router-dom';
-
+import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
 // Configure AWS
 AWS.config.update({
   region: "us-east-1",
@@ -17,19 +18,58 @@ AWS.config.update({
   ),
 });
 
-function CallPopup({ onClose, mediaRecorder }) {
+function CallPopup({ onClose, mediaRecorder, category}) {
   const navigate = useNavigate();
   const [audioData, setAudioData] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isBotSpeaking, setIsBotSpeaking] = useState(false);
-
+  const [sessionId, setSessionId] = useState(null);
   const { startRecording, stopRecording, mediaBlobUrl } = mediaRecorder;
 
   // References for audio elements
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
 
+  const createSession = async()=>{
+     // Retrieve the user UID from localStorage
+     const userUID = localStorage.getItem('uid');
+        
+     if (!userUID) {
+         console.error("User UID not found in localStorage");
+         return;
+     }
+
+     try {
+         // Reference to the sessions collection
+         const sessionsCollectionRef = collection(db, 'sessions');
+
+         // Create a new session document with automatically generated ID
+         const newSession = {
+             questions: [],
+             answers: [],
+             embeddings: [],
+             category: 0
+         };
+         const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+
+         // Update the user's session array with the new session reference
+         const userRef = doc(db, 'Users', userUID);
+         await updateDoc(userRef, {
+             session: arrayUnion(sessionDocRef)
+         });
+
+         // Log the session ID for debugging purposes
+         const sessionId = sessionDocRef.id;
+         console.log('New session ID:', sessionId);
+         setSessionId(sessionId);
+        }
+        catch (error) {
+          console.error("Error creating new session:", error);
+      }
+  }
   useEffect(() => {
+    //create the session id 
+    createSession();
     if (popupAudioRef.current) {
       popupAudioRef.current.play();
       setIsBotSpeaking(true); // Start bot speaking when popup opens
@@ -81,9 +121,9 @@ const sendAudio = async () => {
       const uid = localStorage.getItem("uid");
 
       // Append additional required data to formData
-      formData.append("category", "1");
+      formData.append("category", category);
       formData.append("uid", uid);
-
+      formData.append("sessionId", sessionId);
       // Send the audio file to the backend using Axios
       const backendUrl = "https://hackon-slva.onrender.com/get_response";
       const audioResponse = await axios.post(backendUrl, formData, {
