@@ -52,7 +52,7 @@ function MainPage() {
   function Category({ image, label, onClick, index }) {
     return (
       <div className="text-center category-card" onClick={onClick}>
-        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-300 scale-105' : ''}`}>
+        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-200 scale-105' : ''}`}>
           <img
             src={image}
             alt={label}
