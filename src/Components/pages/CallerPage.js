@@ -12,15 +12,26 @@ import sellingImage from "../../utils/images/7.png";
 import generalQueriesImage from "../../utils/images/3.png";
 import primes from "../../utils/images/primes.png";
 import video from "../../utils/images/video.svg";
-
 import CallPopup from "./callPopup";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import Footer from "../footer";
 import Navbar from "../../Components/navbar/index";
 import { categoryLabels } from "../../utils/helper";
+import {Swiper, SwiperSlide} from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
+import {EffectCoverflow, Pagination, Navigation} from 'swiper/modules';
+import './main.css';
+import slider1 from "../../utils/images/slider-1.png";
+import slider2 from "../../utils/images/slider-2.png";
+import slider3 from "../../utils/images/slider-3.png";
+import slider4 from "../../utils/images/slider-4.png";
+import slider5 from "../../utils/images/slider-5.png";
 function MainPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [categorySelected, setCategorySelected] = useState(0); //initially general category is default category
@@ -41,23 +52,25 @@ function MainPage() {
   function Category({ image, label, onClick, index }) {
     return (
       <div className="text-center category-card" onClick={onClick}>
-        <div className={`p-4 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg' : ''}`}>
+        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-300 scale-105' : ''}`}>
           <img
             src={image}
             alt={label}
             className="h-24 w-24 sm:h-32 sm:w-32 md:h-[150px] md:w-[150px] mx-auto mb-4"
           />
-          <div className="mt-2 text-sm sm:text-base">{label}</div>
+          <div className="mt-2 text-xl">{label}</div>
         </div>
       </div>
     );
   }
 
   const mediaRecorder = useReactMediaRecorder({ audio: true });
+  
   useEffect(()=>{
     toast.success("Click on Call Now");
   }, [categorySelected])
-  return (
+
+   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar  />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
@@ -81,7 +94,7 @@ function MainPage() {
             <span>Call now</span>
           </button>
         </div>
-        <div className="absolute top-1/2 right-4 md:right-[50px] transform -translate-y-1/2 h-full flex items-center justify-center sm:z-0 ">
+        <div className="absolute top-1/2 right-4 md:right-[50px] transform -translate-y-1/2 h-full flex items-center justify-center sm:z-0">
           <img
             src={headerImage}
             alt="Header Image"
@@ -92,18 +105,20 @@ function MainPage() {
 
       <div className="flex justify-center mt-10 px-4">
         <div className="flex flex-col p-0 m-0">
-        <div className="text-center text-2xl mb-7 font-bold">Select your category</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-7">
-        {categories.map((category, index) => ( 
-        <Category
-          key={index} // Add a unique key for each category
-          image={category.image}
-          label={category.label}
-          onClick={() => setCategorySelected(index)}
-          index={index}
-        />
-      ))}
-      </div>
+          <div className="text-center text-4xl py-8 font-bold text-gray-800">
+            Select your category
+          </div>
+          <div className="grid py-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {categories.map((category, index) => (
+              <Category
+                key={index} // Add a unique key for each category
+                image={category.image}
+                label={category.label}
+                onClick={() => setCategorySelected(index)}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -118,16 +133,69 @@ function MainPage() {
             style={{ width: "5rem", height: "5rem" }} // Adjust width and height inline
           />
         </div>
-        
       </div> */}
+      
 
-      <div className="px-4 mt-12">
+    <div className="container">
+      <h1 className="text-4xl font-bold text-center py-6">What we offer?</h1>
+      <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={'auto'}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={{ el: '.swiper-pagination', clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+          clickable: true,
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className="swiper_container"
+      >
+        <SwiperSlide>
+          <img src={slider1} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider2} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider3} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider4} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider5} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider2} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider4} alt="slide_image" />
+        </SwiperSlide>
+        <div className="slider-controler">
+          <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline"/>
+          <CircleArrowRight className="swiper-button-next slider-arrow" name="arrow-forward-outline"/>
+          <div className="swiper-pagination"></div>
+        </div>
+      </Swiper>
+    </div>
+
+      <div className="px-4">
         <About />
       </div>
       {showPopup && (
         <CallPopup
           onClose={() => setShowPopup(false)}
-          mediaRecorder={mediaRecorder} category={categorySelected}
+          mediaRecorder={mediaRecorder}
+          category={categorySelected}
         />
       )}
 
