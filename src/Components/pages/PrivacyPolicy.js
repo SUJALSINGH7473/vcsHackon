@@ -24,15 +24,15 @@ const PrivacyPolicy = () => {
           </p>
           <ul className="list-disc pl-5">
             <li>
-              <strong>Personal Data</strong>
+              <>Personal Data</>
             </li>
             <li>
-              <strong>Contact Information</strong>
+              <>Contact Information</>
             </li>
             <li>
-              <strong>
+              <>
                 Demographic and other personally identifiable information (PII)
-              </strong>
+              </>
             </li>
           </ul>
         </div>

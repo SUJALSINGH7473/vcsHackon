@@ -17,10 +17,6 @@
       "answer": "Responses are personalized and context-aware by integrating previous call history from the User DB, which helps in personalizing interactions and anticipating customer needs."
     },
     {
-      "question": "How is Text-to-Speech implemented cost-effectively?",
-      "answer": "Text-to-Speech is implemented using Amazon Polly services, which convert generated responses back to audio, ensuring natural and clear communication while keeping operational costs low."
-    },
-    {
       "question": "What are the key success metrics for the virtual customer service?",
       "answer": "Key success metrics include First Response Time, Issue Resolution Rate, Customer Satisfaction Score (CSAT), and the rate of cross-sell and up-sell."
     },
@@ -35,14 +31,6 @@
     {
       "question": "Who are the target customers for this service?",
       "answer": "The target customers include Amazon Shoppers, Amazon Prime Members, Amazon Customer Service Representatives, and Amazon Sellers."
-    },
-    {
-      "question": "How does the service address customer problems?",
-      "answer": "The service addresses customer problems by providing multilingual support, accurate query resolution based on user queries and service database, follow-up using past call data for precise responses, and sentiment analysis to tailor responses according to customer sentiment."
-    },
-    {
-      "question": "What common problems do customers face with traditional support systems?",
-      "answer": "Common problems include language barriers, inconsistent information, the need to repeat previous call details, lack of proper emotion tracking and feedback, and limited availability of customer support."
     },
     {
       "question": "How can we anticipate future customer needs and trends?",

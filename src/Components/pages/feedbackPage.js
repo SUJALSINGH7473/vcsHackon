@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css';
 import { db } from '../../utils/firebase'
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function FeedbackPage() {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ function FeedbackPage() {
         timestamp,
       });
 
-      alert('Feedback submitted successfully!');
+      toast.success('Feedback submitted successfully!');
       navigate('/main');
     } catch (error) {
       console.error('Error submitting feedback:', error);
