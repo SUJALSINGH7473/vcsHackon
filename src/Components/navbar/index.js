@@ -15,7 +15,7 @@ class Navbar extends React.Component {
   state = {
     firstName: '',
     lastName: '',
-    selectedLanguage: 'English' // default language
+    selectedLanguage: 'English' 
   };
 
   async componentDidMount() {

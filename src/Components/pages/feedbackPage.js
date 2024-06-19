@@ -143,28 +143,7 @@ function FeedbackPage() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="shareLink">
-                Let your friends know about us!
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  id="shareLink"
-                  name="shareLink"
-                  className="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value="http://localhost:3000/"
-                  readOnly
-                />
-                <button
-                  type="button"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline"
-                  onClick={() => navigator.clipboard.writeText("http://localhost:3000/")}
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
+            
 
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="additionalComments">

@@ -10,6 +10,7 @@ import purchaseImage from "../../utils/images/5.png";
 import refundImage from "../../utils/images/6.png";
 import sellingImage from "../../utils/images/7.png";
 import generalQueriesImage from "../../utils/images/3.png";
+import primes from "../../utils/images/primes.png";
 import video from "../../utils/images/video.svg";
 
 import CallPopup from "./callPopup";
@@ -33,8 +34,8 @@ function MainPage() {
     { image: awsImage, label: 'AWS Support' },
     { image: purchaseImage, label: 'Online Retailer' },
     {image: refundImage, label: 'Refund Requests'},
-    {image: sellingImage, label: 'Seller Support'},
-    {image: generalQueriesImage, label: 'Prime Member Services'}
+    {image: sellingImage, label: 'Buyers Support'},
+    {image: primes, label: 'Prime Members '}
   ];
 
   function Category({ image, label, onClick, index }) {
@@ -106,18 +107,19 @@ function MainPage() {
         </div>
       </div>
 
-      <div className="text-center">
-        <div className="inline-block mt-4 relative">
-          <div className="absolute inset-0  rounded-lg"></div>{" "}
+      {/* <div className="text-center">
+        <div className="inline-block mt-4 relative"> */}
+          {/* <div className="absolute inset-0  rounded-lg"></div>{" "} */}
           {/* Black rectangle */}
-          <img
+          {/* <img
             src={video}
             alt="Sample Video"
             className="max-w-full h-auto relative"
             style={{ width: "5rem", height: "5rem" }} // Adjust width and height inline
           />
         </div>
-      </div>
+        
+      </div> */}
 
       <div className="px-4 mt-12">
         <About />

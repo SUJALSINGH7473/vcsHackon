@@ -1,12 +1,10 @@
+// src/components/pages/SignUp.js
 import React from 'react';
-import bcrypt from 'bcryptjs';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../utils/firebase';
-import { auth } from '../../utils/firebase';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { signUpUser } from '../auth/authSlice';
 import { FaGoogle } from 'react-icons/fa';
 
 const SignUpSchema = Yup.object().shape({
@@ -26,37 +24,19 @@ const languages = [
   'Korean', 'Arabic', 'Turkish', 'Dutch', 'Swedish', 'Greek', 'Polish'
 ];
 
-function SignUp({ toggleForm }) {
+function SignUp() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status);
+  const authError = useSelector((state) => state.auth.error);
 
-  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    try {
-      // Hash the password before saving it to Firestore
-      const hashedPassword = await bcrypt.hash(values.password, 10);
-
-      // Create a user with email and password
-      const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
-      const user = userCredential.user;
-
-      // Save user data to Firestore
-      await setDoc(doc(db, 'Users', user.uid), {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        contactNumber: values.contactNumber,
-        email: values.email,
-        password: hashedPassword,
-        country: values.country,
-        language: values.language
-      });
-
-      console.log('Sign up successful');
-      localStorage.setItem('uid', user.uid);
-      navigate('/main'); // Redirect to main page
-    } catch (error) {
-      setErrors({ formError: 'Failed to create account. Please try again.' });
-      console.error('Error signing up:', error);
-    }
-    setSubmitting(false);
+  const handleSubmit = (values, { setSubmitting }) => {
+    dispatch(signUpUser(values)).then((action) => {
+      if (action.meta.requestStatus === 'fulfilled') {
+        navigate('/main');
+      }
+      setSubmitting(false);
+    });
   };
 
   return (
@@ -73,9 +53,9 @@ function SignUp({ toggleForm }) {
       validationSchema={SignUpSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, errors }) => (
+      {({ isSubmitting }) => (
         <Form className="p-8 bg-white rounded-lg shadow-md w-full max-w-md mx-auto">
-          {errors.formError && <p className="text-red-500 mb-4">{errors.formError}</p>}
+          {authStatus === 'failed' && <p className="text-red-500 mb-4">{authError}</p>}
           <div className="flex gap-4 mb-4">
             <div className="w-1/2">
               <Field
@@ -153,8 +133,8 @@ function SignUp({ toggleForm }) {
             </Field>
             <ErrorMessage name="language" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
           </div>
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600 transition-colors duration-300 text-sm md:text-base" disabled={isSubmitting}>
-            {isSubmitting ? 'Creating Account...' : 'Create Account'}
+          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600 transition-colors duration-300 text-sm md:text-base" disabled={isSubmitting || authStatus === 'loading'}>
+            {isSubmitting || authStatus === 'loading' ? 'Creating Account...' : 'Create Account'}
           </button>
           <div className="text-center mt-4">
             <p className="text-gray-600 text-xs md:text-sm">Or</p>
