@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Hackon by Amazon - Team Dynamo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+Hackon is an advanced virtual customer service solution developed by Team Dynamo for Amazon. It leverages AI and NLP technologies to provide efficient, personalized, and accurate customer support.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+### Speech-to-Text Conversion
+- **Amazon Transcribe**: Multi-lingual, accurate audio-to-text conversion with real-time processing.
 
-### `npm start`
+### Text Processing and Sentiment Analysis
+- **Text Chunking**: Efficient text handling using Recursive Character Text Splitter.
+- **Sentiment Analysis**: Customizes responses using GoEmotions to understand customer queries and emotions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Embedding Generation and Semantic Search
+- **OpenAI Embeddings**: Efficient information retrieval from the Service Database, reducing wait times.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Personalized and Context-Aware Responses
+- **User DB Integration**: Personalizes interactions using previous call history.
 
-### `npm test`
+### Cost-Effective Text-to-Speech Implementation
+- **Amazon Polly**: Converts text responses to audio, ensuring clear communication while keeping costs low.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Additional Features
+- **Video Solution Support**: Customers can watch video solutions and request audio assistance.
+- **Reduced Waiting Time**: Optimized system architecture for faster responses.
+- **Accurate Results**: Delivers precise answers using current queries, previous interactions, and sentiment analysis.
 
-### `npm run build`
+## Addressing Common Challenges
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Multilingual Support**: Seamless communication in multiple languages.
+- **Consistent Information**: Uniform responses using a centralized Service Database.
+- **Follow-up and Resolution Tracking**: Reduces the need for customers to repeat previous call details.
+- **Emotion Tracking and Feedback**: Tailors responses according to customer sentiment.
+- **24/7 Support**: Round-the-clock availability.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Societal Impact
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Stress Reduction**: Efficient support reduces stress and frustration.
+- **Increased Accessibility**: Services accessible across different time zones.
+- **Customer Satisfaction and Trust**: Personalized interactions improve satisfaction and loyalty.
+- **Globalization**: Breaks down geographic barriers, fostering global trade.
+- **Scalability**: Quick expansion in response to increased demand.
+- **Cost Reduction**: Significant operational savings.
+- **Increased Capacity**: Manages higher call volumes without compromising quality.
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
+- Node.js
+- npm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/yourusername/hackon.git
+   cd hackon
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
 
-## Learn More
+3. **Start the development server:**
+   ```sh
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Conclusion
+Hackon by Amazon, developed by Team Dynamo, enhances customer support through state-of-the-art AI and NLP technologies. It addresses current challenges and paves the way for future innovations in virtual customer service.
