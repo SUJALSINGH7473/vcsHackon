@@ -3,11 +3,12 @@ import React from 'react';
 const Footer = () => {
   return (
     <div>
-     <div className="text-center py-4 bg-gray-900">
-      <a href="#" className="text-gray-400 hover:text-gray-200" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-        Back to top
-      </a>
-    </div>
+    <div className="text-center py-4 bg-gray-900" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  <a href="#" className="text-gray-400 hover:text-gray-200">
+    Back to top
+  </a>
+</div>
+
 
     <footer className="bg-gray-800 text-white py-6">
       <div className="container mx-auto px-4">
