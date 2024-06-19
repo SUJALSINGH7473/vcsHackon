@@ -21,11 +21,6 @@ Hackon is an advanced virtual customer service solution developed by Team Dynamo
 ### Cost-Effective Text-to-Speech Implementation
 - **Amazon Polly**: Converts text responses to audio, ensuring clear communication while keeping costs low.
 
-### Additional Features
-- **Video Solution Support**: Customers can watch video solutions and request audio assistance.
-- **Reduced Waiting Time**: Optimized system architecture for faster responses.
-- **Accurate Results**: Delivers precise answers using current queries, previous interactions, and sentiment analysis.
-
 ## Addressing Common Challenges
 
 - **Multilingual Support**: Seamless communication in multiple languages.
