@@ -1,30 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPlane, FaSmile, FaRegSmile, FaMeh, FaFrown, FaRegFrown } from 'react-icons/fa';
+
 import 'tailwindcss/tailwind.css';
+import { db } from '../../utils/firebase'
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function FeedbackPage() {
+  const navigate = useNavigate();
   const [recommendation, setRecommendation] = useState(0);
   const [serviceRating, setServiceRating] = useState(0); 
+  const [issueResolution, setIssueResolution] = useState('5 - Awesome');
+  const [additionalComments, setAdditionalComments] = useState('');
+  const [location, setLocation] = useState('');
 
   const handleServiceRating = (rating) => {
     setServiceRating(rating);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await addDoc(collection(db, 'Feedback'), {
-  //       serviceRating,
-  //       recommendation,
-  //       responseTime,
-  //       issueResolution,
-  //       additionalComments,
-  //     });
-  //     alert('Feedback submitted successfully!');
-  //   } catch (error) {
-  //     console.error('Error submitting feedback:', error);
-  //   }
-  // };
+  useEffect(() => {
+    const fetchUserLocation = async () => {
+      const uid = localStorage.getItem('uid');
+      if (uid) {
+        const userRef = doc(db, 'Users', uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setLocation(userData.country);
+        }
+      }
+    };
+
+    fetchUserLocation();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const timestamp = new Date();
+
+      await addDoc(collection(db, 'Feedback'), {
+        serviceRating,
+        recommendation,
+        issueResolution,
+        comments: additionalComments,
+        location,
+        timestamp,
+      });
+
+      toast.success('Feedback submitted successfully!');
+      navigate('/main');
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white m-4 md:m-10">
@@ -42,7 +73,7 @@ function FeedbackPage() {
         {/* Right side form */}
         <div className="md:w-3/5 p-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4 text-center">Feedback Form</h2>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="serviceRating">
                 Service Rating:
@@ -63,20 +94,18 @@ function FeedbackPage() {
                   title="Average"
                   onClick={() => handleServiceRating(3)}
                 />
-                <FaFrown
+                <FaRegFrown
                   className={`h-8 w-8 cursor-pointer ${serviceRating === 4 ? 'text-orange-500' : 'text-gray-400'}`}
                   title="Bad"
                   onClick={() => handleServiceRating(4)}
                 />
-                <FaRegFrown
+                <FaFrown
                   className={`h-8 w-8 cursor-pointer ${serviceRating === 5 ? 'text-red-500' : 'text-gray-400'}`}
                   title="Terrible"
                   onClick={() => handleServiceRating(5)}
                 />
               </div>
             </div>
-
-            
 
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="issueResolution">
@@ -86,6 +115,8 @@ function FeedbackPage() {
                 id="issueResolution"
                 name="issueResolution"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={issueResolution}
+                onChange={(e) => setIssueResolution(e.target.value)}
               >
                 <option>5 - Awesome</option>
                 <option>4 - Good</option>
@@ -112,28 +143,7 @@ function FeedbackPage() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-gray-700 font-bold mb-2" htmlFor="shareLink">
-                Let your friends know about us!
-              </label>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  id="shareLink"
-                  name="shareLink"
-                  className="shadow appearance-none border rounded-l w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value="http://localhost:3000/"
-                  readOnly
-                />
-                <button
-                  type="button"
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline"
-                  onClick={() => navigator.clipboard.writeText("https://yourwebsite.com/share")}
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
+            
 
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="additionalComments">
@@ -144,6 +154,8 @@ function FeedbackPage() {
                 name="additionalComments"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 rows="4"
+                value={additionalComments}
+                onChange={(e) => setAdditionalComments(e.target.value)}
               ></textarea>
             </div>
 

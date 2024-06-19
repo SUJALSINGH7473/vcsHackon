@@ -10,6 +10,7 @@ import purchaseImage from "../../utils/images/5.png";
 import refundImage from "../../utils/images/6.png";
 import sellingImage from "../../utils/images/7.png";
 import generalQueriesImage from "../../utils/images/3.png";
+import primes from "../../utils/images/primes.png";
 import video from "../../utils/images/video.svg";
 import CallPopup from "./callPopup";
 import { useReactMediaRecorder } from "react-media-recorder";
@@ -44,8 +45,8 @@ function MainPage() {
     { image: awsImage, label: 'AWS Support' },
     { image: purchaseImage, label: 'Online Retailer' },
     {image: refundImage, label: 'Refund Requests'},
-    {image: sellingImage, label: 'Seller Support'},
-    {image: generalQueriesImage, label: 'Prime Services'}
+    {image: sellingImage, label: 'Buyers Support'},
+    {image: primes, label: 'Prime Members '}
   ];
 
   function Category({ image, label, onClick, index }) {
@@ -71,9 +72,9 @@ function MainPage() {
 
    return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar />
+      <Navbar  />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-      <div className="relative h-80 bg-blue-500 text-white flex items-center justify-between overflow-visible mt-8 lg:mx-14 md:mx-12 sm:mx-10 rounded-3xl">
+      <div className="relative h-80 bg-blue-500 text-white  flex items-center justify-between overflow-visible mt-12 lg:mx-14 md:mx-12 sm:mx-10 rounded-3xl ">
         <div className="pl-20">
           <h1 className="lg:text-5xl md:text-3xl sm:text-xl font-bold block">
             HOW CAN WE
@@ -122,9 +123,10 @@ function MainPage() {
       </div>
 
       {/* <div className="text-center">
-        <div className="inline-block mt-4 relative">
-          <div className="absolute inset-0 rounded-lg"></div>
-          <img
+        <div className="inline-block mt-4 relative"> */}
+          {/* <div className="absolute inset-0  rounded-lg"></div>{" "} */}
+          {/* Black rectangle */}
+          {/* <img
             src={video}
             alt="Sample Video"
             className="max-w-full h-auto relative"

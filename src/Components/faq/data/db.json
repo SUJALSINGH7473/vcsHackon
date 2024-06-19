@@ -1,29 +1,41 @@
 {
-    "faqs": [
-      {
-        "question": "How many users can use my chatbot?",
-        "answer": "If your chatbot is private, only you have access to it. If you decide to make it public, anyone with the link will be able to interact with it."
-      },
-      {
-        "question": "How do I know how many characters are in my document?",
-        "answer": "Once you attach your document(s) for upload, Elephant.ai will show you the character count of all the attached documents."
-      },
-      {
-        "question": "How do message credits work?",
-        "answer": "One AI response with gpt-3.5-turbo (the default) costs 1 message credit. One AI response with gpt-4 costs 20 message credits. You can change which model your chatbot uses in the chatbot settings. The difference is because gpt-4 costs 15x (prompt tokens) and 30x (completion tokens) what gpt-3.5-turbo costs on OpenAI."
-      },
-      {
-        "question": "When are my message credits renewed?",
-        "answer": "Your message credits are renewed every month on the same date that you originally subscribed. So, if you subscribe on the 15th of March, your credits will be renewed on the 15th of April, and so on each month."
-      },
-      {
-        "question": "Can I upload multiple files to one chatbot?",
-        "answer": "Yes, if you have a paid plan you can upload multiple files to one chatbot. Just click ctrl (windows) or cmd (mac) and select as many files as you want."
-      },
-      {
-        "question": "How much data can I give one chatbot?",
-        "answer": "Free plan: 400K Characters (~5MB) | Hobby/Standard/Unlimited: 11M Characters (~140MB)"
-      }
-    ]
-  }
-  
+  "faqs": [
+    {
+      "question": "How are responses personalized and context-aware?",
+      "answer": "Responses are personalized and context-aware by integrating previous call history from the User DB, which helps in personalizing interactions and anticipating customer needs."
+    },
+    {
+      "question": "What business impacts does the virtual customer service have?",
+      "answer": "Business impacts include cost reduction due to reduced need for human agents and improved call handling efficiency, and increased capacity to manage a higher volume of calls concurrently without compromising on response quality."
+    },
+    {
+      "question": "What are the key success metrics for the virtual customer service?",
+      "answer": "Key success metrics include First Response Time, Issue Resolution Rate, Customer Satisfaction Score (CSAT), and the rate of cross-sell and up-sell."
+    },
+    {
+      "question": "What are the customer impacts of using the virtual customer service?",
+      "answer": "Customer impacts include improved customer experience with faster and more accurate responses to queries, multilingual support for better accessibility, and overall enhanced satisfaction and loyalty."
+    },
+    {
+      
+      "question": "What is Speech-to-Text Conversion?",
+      "answer": "Speech-to-Text Conversion utilizes Amazon Transcribe for multi-lingual, accurate audio-to-text conversion, optimizing noise reduction and compression for real-time processing."
+    },
+    {
+      "question": "How does Text Processing and Sentiment Analysis work?",
+      "answer": "Text Processing involves using Recursive Character Text Splitter for text chunking, while sentiment analysis is performed using GoEmotions to understand customer queries and emotions, customizing responses to enhance the user experience."
+    },
+    {
+      "question": "What is Embedding Generation and Semantic Search?",
+      "answer": "Embedding Generation uses OpenAI Embeddings and a semantic search index to efficiently process and retrieve relevant information from the Service Database, providing quick and accurate responses to customer queries."
+    },
+    {
+      "question": "Who are the target customers for this service?",
+      "answer": "The target customers include Amazon Shoppers, Amazon Prime Members, Amazon Customer Service Representatives, and Amazon Sellers."
+    },
+    {
+      "question": "How can we anticipate future customer needs and trends?",
+      "answer": "Future customer needs and trends can be anticipated by offering video solution support, reducing waiting time through optimized system architecture, and delivering accurate results by leveraging current queries, previous interactions, sentiment analysis, and predefined rules."
+    }
+  ]
+}
