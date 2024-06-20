@@ -281,7 +281,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       setIsBotSpeaking(true);
       popupAudioRef.current.onended = () => setIsBotSpeaking(false);
     }
-  }, []);
+  });
 
   const handleStart = async () => {
     startRecording();
@@ -331,6 +331,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       formData.append("file", audioBlob, "recording.mp3");
 
       const uid = localStorage.getItem("uid");
+    
       formData.append("category", category);
       formData.append("uid", uid);
       formData.append("sessionId", sessionId);

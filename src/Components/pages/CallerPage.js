@@ -69,7 +69,7 @@ function MainPage() {
 
    return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar  />
+      <Navbar   />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <div className="relative h-80 bg-blue-500 text-white  flex items-center justify-between overflow-visible mt-12 lg:mx-14 md:mx-12 sm:mx-10 rounded-3xl ">
         <div className="pl-20">

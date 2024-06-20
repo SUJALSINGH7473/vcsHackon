@@ -21,7 +21,7 @@ const countries = ['India', 'USA', 'Australia', 'UK', 'Canada'];
 const languages = [
   'English', 'Hindi', 'Spanish', 'French', 'German',
   'Chinese', 'Japanese', 'Russian', 'Portuguese', 'Italian',
-  'Korean', 'Arabic', 'Turkish', 'Dutch', 'Swedish', 'Greek', 'Polish'
+  'Korean', 'Arabic', 'Turkish', 'Dutch', 'Swedish', 'Polish'
 ];
 
 function SignUp() {

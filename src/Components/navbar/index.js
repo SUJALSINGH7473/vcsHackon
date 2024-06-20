@@ -72,14 +72,14 @@ class Navbar extends React.Component {
         <div className="max-w-inherit px-4 py-2 flex items-center justify-between">
           {/* Logo Section */}
           <div className="flex items-center justify-start">
-            <a href="#" className="flex items-center">
+            <a href="/main" className="flex items-center">
               <img src={logoImage} className="sm:h-12 md:h-20" alt="Amazon Logo" />
             </a>
           </div>
 
           {/* Navigation Buttons */}
           <div className="flex justify-end mr-12 space-x-10 text-lg flex-grow">
-            <a href="/" className="flex items-center text-gray-700 hover:text-black transition duration-300 underline">
+            <a href="/main" className="flex items-center text-gray-700 hover:text-black transition duration-300 underline">
               <FaHome className="mr-2 text-gray-500" />
               <span className="font-bold">Home</span>
             </a>
