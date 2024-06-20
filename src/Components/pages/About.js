@@ -1,10 +1,9 @@
 import React from 'react';
-import architectureDiagram from '../../../src/utils/images/model.png'; 
 import Tk from '../../../src/utils/images/Tk.jpg';
 import sujal from '../../../src/utils/images/sujal.png';
 import anupam from '../../../src/utils/images/anupam.jpg';
 import apoorv from '../../../src/utils/images/apoorv.jpg';
-import aboutUs from '../../../src/utils/images/aboutUs.png';
+// import aboutUs from '../../../src/utils/images/aboutUs.png';
 
 export default function About() {
   return (

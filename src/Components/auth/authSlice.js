@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import bcrypt from 'bcryptjs';
 import { auth, db } from '../../utils/firebase';
 
 const initialState = {
@@ -16,13 +15,12 @@ export const signUpUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { email, password, ...otherData } = userData;
-      const hashedPassword = await bcrypt.hash(password, 10);
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       await setDoc(doc(db, 'Users', user.uid), {
         email,
-        password: hashedPassword,
+        password,  // Storing password directly, not secure
         ...otherData
       });
 

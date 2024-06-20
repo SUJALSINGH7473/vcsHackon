@@ -233,7 +233,7 @@ AWS.config.update({
 
 function CallPopup({ onClose, mediaRecorder, category }) {
   const navigate = useNavigate();
-  const [audioData, setAudioData] = useState(null);
+  //const [audioData, setAudioData] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isBotSpeaking, setIsBotSpeaking] = useState(false);
   const [sessionId, setSessionId] = useState(null);
@@ -306,7 +306,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
   const discardRecording = () => {
     stopRecording();
-    setAudioData(null);
+   // setAudioData(null);
     // setMediaBlobUrl(null); // Clear the media blob URL
     toast.info("Recording discarded");
     console.log("Recording discarded");
@@ -382,7 +382,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
         URL.revokeObjectURL(audioUrlObject);
       };
 
-      setAudioData(null);
+      //setAudioData(null);
       // setMediaBlobUrl(null); // Clear the media blob URL after sending
     } catch (error) {
       console.error("Error uploading or sending audio:", error);
@@ -402,7 +402,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
     // Reset the bot speaking state
     setIsBotSpeaking(false);
     // Clear any audio data and close the popup
-    setAudioData(null);
+  //  setAudioData(null);
     // setMediaBlobUrl(null); // Clear the media blob URL
     onClose();
     navigate('/feedback');

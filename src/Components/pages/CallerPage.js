@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../utils/firebase"; // Adjust the import path if necessary
-import { collection, getDocs } from "firebase/firestore";
 import About from "../faq/About/about";
 import "tailwindcss/tailwind.css";
 import phone from "../../utils/images/phone.svg";
@@ -11,14 +9,13 @@ import refundImage from "../../utils/images/6.png";
 import sellingImage from "../../utils/images/7.png";
 import generalQueriesImage from "../../utils/images/3.png";
 import primes from "../../utils/images/primes.png";
-import video from "../../utils/images/video.svg";
 import CallPopup from "./callPopup";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../footer";
 import Navbar from "../../Components/navbar/index";
-import { categoryLabels } from "../../utils/helper";
+// import { categoryLabels } from "../../utils/helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -97,7 +94,7 @@ function MainPage() {
         <div className="absolute top-1/2 right-4 md:right-[50px] transform -translate-y-1/2 h-full flex items-center justify-center sm:z-0">
           <img
             src={headerImage}
-            alt="Header Image"
+            alt="Header Images"
             className="h-40 w-40 sm:h-[300px] sm:w-[300px] md:h-[500px] md:w-[500px] object-cover"
           />
         </div>
@@ -160,25 +157,25 @@ function MainPage() {
         className="swiper_container"
       >
         <SwiperSlide>
-          <img src={slider1} alt="slide_image" />
+          <img src={slider1} alt="slide_image1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider2} alt="slide_image" />
+          <img src={slider2} alt="slide_image2" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider3} alt="slide_image" />
+          <img src={slider3} alt="slide_image3" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider4} alt="slide_image" />
+          <img src={slider4} alt="slide_image4" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider5} alt="slide_image" />
+          <img src={slider5} alt="slide_image5" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider2} alt="slide_image" />
+          <img src={slider2} alt="slide_image6" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider4} alt="slide_image" />
+          <img src={slider4} alt="slide_image7" />
         </SwiperSlide>
         <div className="slider-controler">
           <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline"/>

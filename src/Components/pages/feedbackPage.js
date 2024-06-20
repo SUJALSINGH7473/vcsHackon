@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaPlane, FaSmile, FaRegSmile, FaMeh, FaFrown, FaRegFrown } from 'react-icons/fa';
-
 import 'tailwindcss/tailwind.css';
-import { db } from '../../utils/firebase'
+import { db } from '../../utils/firebase';
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function FeedbackPage() {
   const navigate = useNavigate();
@@ -54,6 +54,7 @@ function FeedbackPage() {
       navigate('/main');
     } catch (error) {
       console.error('Error submitting feedback:', error);
+      toast.error('Failed to submit feedback.');
     }
   };
 
@@ -143,8 +144,6 @@ function FeedbackPage() {
               </div>
             </div>
 
-            
-
             <div>
               <label className="block text-gray-700 font-bold mb-2" htmlFor="additionalComments">
                 Your Feedback is important:
@@ -170,6 +169,7 @@ function FeedbackPage() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
