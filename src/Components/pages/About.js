@@ -1,5 +1,4 @@
 import React from 'react';
-import architectureDiagram from '../../../src/utils/images/model.png'; 
 import Tk from '../../../src/utils/images/Tk.jpg';
 import sujal from '../../../src/utils/images/sujal.png';
 import anupam from '../../../src/utils/images/anupam.jpg';

@@ -156,25 +156,25 @@ function MainPage() {
         className="swiper_container"
       >
         <SwiperSlide>
-          <img src={slider1} alt="slide_image" />
+          <img src={slider1} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider2} alt="slide_image" />
+          <img src={slider2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider3} alt="slide_image" />
+          <img src={slider3} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider4} alt="slide_image" />
+          <img src={slider4} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider5} alt="slide_image" />
+          <img src={slider5} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider2} alt="slide_image" />
+          <img src={slider2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slider4} alt="slide_image" />
+          <img src={slider4} />
         </SwiperSlide>
         <div className="slider-controler">
           <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline"/>

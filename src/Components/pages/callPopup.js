@@ -269,7 +269,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
         questions: [],
         answers: [],
         embeddings: [],
-        category: category,
+        categories: category,
       };
       const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
 
@@ -293,7 +293,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       setIsBotSpeaking(true);
       popupAudioRef.current.onended = () => setIsBotSpeaking(false);
     }
-  }, []);
+  }, [category]);
 
   const handleStart = async () => {
     startRecording();
