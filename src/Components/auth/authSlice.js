@@ -20,7 +20,8 @@ export const signUpUser = createAsyncThunk(
 
       await setDoc(doc(db, 'Users', user.uid), {
         email,
-        password,  // Storing password directly, not secure
+        password,
+        
         ...otherData
       });
 
