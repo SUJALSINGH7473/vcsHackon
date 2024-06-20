@@ -243,6 +243,37 @@ AWS.config.update({
   ),
 });
 
+const createSession = async (category) => {
+  const userUID = localStorage.getItem("uid");
+  if (!userUID) {
+    console.error("User UID not found in localStorage");
+    return;
+  }
+
+  try {
+    const sessionsCollectionRef = collection(db, "sessions");
+    const newSession = {
+      questions: [],
+      answers: [],
+      embeddings: [],
+      categories: category,
+    };
+    const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+
+    const userRef = doc(db, "Users", userUID);
+    await updateDoc(userRef, {
+      session: arrayUnion(sessionDocRef),
+    });
+
+    const sessionId = sessionDocRef.id;
+    console.log("New session ID:", sessionId);
+    return sessionId;
+  } catch (error) {
+    console.error("Error creating new session:", error);
+    throw error; // Rethrow the error for handling in the component
+  }
+};
+
 function CallPopup({ onClose, mediaRecorder, category }) {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
@@ -256,45 +287,64 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
 
-  const createSession = async () => {
-    const userUID = localStorage.getItem("uid");
-    if (!userUID) {
-      console.error("User UID not found in localStorage");
-      return;
-    }
+  // const createSession = async () => {
+  //   const userUID = localStorage.getItem("uid");
+  //   if (!userUID) {
+  //     console.error("User UID not found in localStorage");
+  //     return;
+  //   }
 
-    try {
-      const sessionsCollectionRef = collection(db, "sessions");
-      const newSession = {
-        questions: [],
-        answers: [],
-        embeddings: [],
-        categories: category,
-      };
-      const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+  //   try {
+  //     const sessionsCollectionRef = collection(db, "sessions");
+  //     const newSession = {
+  //       questions: [],
+  //       answers: [],
+  //       embeddings: [],
+  //       categories: category,
+  //     };
+  //     const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
 
-      const userRef = doc(db, "Users", userUID);
-      await updateDoc(userRef, {
-        session: arrayUnion(sessionDocRef),
-      });
+  //     const userRef = doc(db, "Users", userUID);
+  //     await updateDoc(userRef, {
+  //       session: arrayUnion(sessionDocRef),
+  //     });
 
-      const sessionId = sessionDocRef.id;
-      console.log("New session ID:", sessionId);
-      setSessionId(sessionId);
-    } catch (error) {
-      console.error("Error creating new session:", error);
-    }
-  };
+  //     const sessionId = sessionDocRef.id;
+  //     console.log("New session ID:", sessionId);
+  //     setSessionId(sessionId);
+  //   } catch (error) {
+  //     console.error("Error creating new session:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   createSession();
+  //   if (popupAudioRef.current) {
+  //     popupAudioRef.current.play();
+  //     setIsBotSpeaking(true);
+  //     popupAudioRef.current.onended = () => setIsBotSpeaking(false);
+  //   }
+  // }, [createSession]);
 
   useEffect(() => {
-    createSession();
-    if (popupAudioRef.current) {
-      popupAudioRef.current.play();
-      setIsBotSpeaking(true);
-      popupAudioRef.current.onended = () => setIsBotSpeaking(false);
-    }
-  }, [createSession]);
+    const fetchSessionId = async () => {
+      try {
+        const id = await createSession(category);
+        setSessionId(id);
 
+        if (popupAudioRef.current) {
+          popupAudioRef.current.play();
+          setIsBotSpeaking(true);
+          popupAudioRef.current.onended = () => setIsBotSpeaking(false);
+        }
+      } catch (error) {
+        console.error("Error creating session:", error);
+        // Handle error if needed
+      }
+    };
+
+    fetchSessionId(); // Call fetchSessionId only once on component mount
+  }, [category]); 
   const handleStart = async () => {
     startRecording();
     setIsRecording(true);

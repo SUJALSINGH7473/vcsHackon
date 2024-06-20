@@ -1,12 +1,13 @@
-// tailwind.config.js
 module.exports = {
-  content: [
-    './src//*.{js,jsx,ts,tsx}',
-    './public/index.html',
-  ],
-  darkMode: 'media', // or remove this line entirely
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lobster: ['Lobster', 'cursive'],
+        merriweather: ['Merriweather', 'serif'],
+      },
+    },
   },
   variants: {
     extend: {},
