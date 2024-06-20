@@ -1,3 +1,7 @@
+Here's the updated README incorporating the details from the provided image:
+
+---
+
 # Hackon by Amazon - Team Dynamo
 
 ## Overview
@@ -6,17 +10,21 @@ Hackon is an advanced virtual customer service solution developed by Team Dynamo
 ## Key Features
 
 ### Speech-to-Text Conversion
-- **Amazon Transcribe**: Multi-lingual, accurate audio-to-text conversion with real-time processing.
+- **Speech-to-Text Model (OpenAI Whisper)**: Extracts audio from the call and converts it to text.
 
 ### Text Processing and Sentiment Analysis
 - **Text Chunking**: Efficient text handling using Recursive Character Text Splitter.
-- **Sentiment Analysis**: Customizes responses using GoEmotions to understand customer queries and emotions.
+- **Sentiment Analysis**: Customizes responses by analyzing the sentiments of the transcriptions using OpenAI's sentiment analysis.
 
 ### Embedding Generation and Semantic Search
-- **OpenAI Embeddings**: Efficient information retrieval from the Service Database, reducing wait times.
+- **Embeddings (HuggingFaceEmbeddings)**: Generates embeddings for text chunks.
+- **Similarity Search (Chroma DB)**: Retrieves top K previous queries and responses using similarity search.
+- **Semantic Search**: Finds the most relevant responses from the Services DB (Rules) stored in Pinecone.
 
 ### Personalized and Context-Aware Responses
-- **User DB Integration**: Personalizes interactions using previous call history.
+- **User DB Integration**: Personalizes interactions using previous call history stored in Firebase Firestore.
+- **LLM Model (OpenAI)**: Generates responses based on the user's query and similar past interactions.
+- **Amazon Polly**: Converts text responses to audio, ensuring clear communication.
 
 ### Cost-Effective Text-to-Speech Implementation
 - **Amazon Polly**: Converts text responses to audio, ensuring clear communication while keeping costs low.
@@ -65,3 +73,5 @@ Hackon is an advanced virtual customer service solution developed by Team Dynamo
 
 ## Conclusion
 Hackon by Amazon, developed by Team Dynamo, enhances customer support through state-of-the-art AI and NLP technologies. It addresses current challenges and paves the way for future innovations in virtual customer service.
+
+---
