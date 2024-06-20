@@ -31,13 +31,13 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   const popupAudioRef = useRef(null);
 
  
-  const playWelcomeAudio=async()=>{
-    if (popupAudioRef.current) {
-      popupAudioRef.current.play();
-      setIsBotSpeaking(true);
-      popupAudioRef.current.onended = () => setIsBotSpeaking(false);
-    }
-  }
+  // const playWelcomeAudio=async()=>{
+  //   if (popupAudioRef.current) {
+  //     popupAudioRef.current.play();
+  //     setIsBotSpeaking(true);
+  //     popupAudioRef.current.onended = () => setIsBotSpeaking(false);
+  //   }
+  // }
 
   
   useEffect(() => {
@@ -73,7 +73,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   createSession();
   //playWelcomeAudio();
  
-},[]);
+});
 
 
   const handleStart = async () => {

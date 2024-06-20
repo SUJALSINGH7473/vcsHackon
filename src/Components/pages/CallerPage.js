@@ -29,6 +29,7 @@ import slider2 from "../../utils/images/slider-2.png";
 import slider3 from "../../utils/images/slider-3.png";
 import slider4 from "../../utils/images/slider-4.png";
 import slider5 from "../../utils/images/slider-5.png";
+
 function MainPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [categorySelected, setCategorySelected] = useState(0); //initially general category is default category
@@ -41,15 +42,15 @@ function MainPage() {
     { image: generalQueriesImage, label: 'General Inquiries' },
     { image: awsImage, label: 'AWS Support' },
     { image: purchaseImage, label: 'Online Retailer' },
-    {image: refundImage, label: 'Refund Requests'},
-    {image: sellingImage, label: 'Buyers Support'},
-    {image: primes, label: 'Prime Members '}
+    { image: refundImage, label: 'Refund Requests' },
+    { image: sellingImage, label: 'Buyers Support' },
+    { image: primes, label: 'Prime Members ' }
   ];
 
   function Category({ image, label, onClick, index }) {
     return (
       <div className="text-center category-card" onClick={onClick}>
-        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-200 scale-105' : ''}`}>
+        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index === categorySelected ? 'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-200 scale-105' : ''}`}>
           <img
             src={image}
             alt={label}
@@ -63,15 +64,15 @@ function MainPage() {
 
   const mediaRecorder = useReactMediaRecorder({ audio: true });
   
-  useEffect(()=>{
+  useEffect(() => {
     toast.success("Click on Call Now");
-  }, [categorySelected])
+  }, [categorySelected]);
 
-   return (
+  return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar   />
+      <Navbar />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-      <div className="relative h-80 bg-blue-500 text-white  flex items-center justify-between overflow-visible mt-12 lg:mx-14 md:mx-12 sm:mx-10 rounded-3xl ">
+      <div className="relative h-80 bg-blue-500 text-white flex items-center justify-between overflow-visible mt-12 lg:mx-14 md:mx-12 sm:mx-10 rounded-3xl ">
         <div className="pl-20">
           <h1 className="lg:text-5xl md:text-3xl sm:text-xl font-bold block">
             HOW CAN WE
@@ -132,58 +133,57 @@ function MainPage() {
         </div>
       </div> */}
       
-
-    <div className="container">
-      <h1 className="text-4xl font-bold text-center py-6">What we offer?</h1>
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={'auto'}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        pagination={{ el: '.swiper-pagination', clickable: true }}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-          clickable: true,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
-      >
-        <SwiperSlide>
-          <img src={slider1} alt="slide_image1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider2} alt="slide_image2" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider3} alt="slide_image3" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider4} alt="slide_image4" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider5} alt="slide_image5" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider2} alt="slide_image6" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={slider4} alt="slide_image7" />
-        </SwiperSlide>
-        <div className="slider-controler">
-          <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline"/>
-          <CircleArrowRight className="swiper-button-next slider-arrow" name="arrow-forward-outline"/>
-          <div className="swiper-pagination"></div>
-        </div>
-      </Swiper>
-    </div>
+      <div className="container">
+        <h1 className="text-4xl font-bold text-center py-6">What we offer?</h1>
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={'auto'}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+          }}
+          pagination={{ el: '.swiper-pagination', clickable: true }}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+            clickable: true,
+          }}
+          modules={[EffectCoverflow, Pagination, Navigation]}
+          className="swiper_container"
+        >
+          <SwiperSlide>
+            <img src={slider1} alt="slide_image1" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider2} alt="slide_image2" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider3} alt="slide_image3" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider4} alt="slide_image4" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider5} alt="slide_image5" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider2} alt="slide_image6" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={slider4} alt="slide_image7" />
+          </SwiperSlide>
+          <div className="slider-controler">
+            <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline" />
+            <CircleArrowRight className="swiper-button-next slider-arrow" name="arrow-forward-outline" />
+            <div className="swiper-pagination"></div>
+          </div>
+        </Swiper>
+      </div>
 
       <div className="px-4">
         <About />
