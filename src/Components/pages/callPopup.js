@@ -293,7 +293,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       setIsBotSpeaking(true);
       popupAudioRef.current.onended = () => setIsBotSpeaking(false);
     }
-  }, [category]);
+  }, [createSession]);
 
   const handleStart = async () => {
     startRecording();
