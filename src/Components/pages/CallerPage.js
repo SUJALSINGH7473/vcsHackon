@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../utils/firebase"; // Adjust the import path if necessary
-import { collection, getDocs } from "firebase/firestore";
 import About from "../faq/About/about";
 import "tailwindcss/tailwind.css";
 import phone from "../../utils/images/phone.svg";
@@ -11,14 +9,12 @@ import refundImage from "../../utils/images/6.png";
 import sellingImage from "../../utils/images/7.png";
 import generalQueriesImage from "../../utils/images/3.png";
 import primes from "../../utils/images/primes.png";
-import video from "../../utils/images/video.svg";
 import CallPopup from "./callPopup";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../footer";
 import Navbar from "../../Components/navbar/index";
-import { categoryLabels } from "../../utils/helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -52,7 +48,7 @@ function MainPage() {
   function Category({ image, label, onClick, index }) {
     return (
       <div className="text-center category-card" onClick={onClick}>
-        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-300 scale-105' : ''}`}>
+        <div className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${index===categorySelected?'border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-200 scale-105' : ''}`}>
           <img
             src={image}
             alt={label}

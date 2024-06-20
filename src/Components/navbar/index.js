@@ -72,7 +72,7 @@ class Navbar extends React.Component {
         <div className="max-w-inherit px-4 py-2 flex items-center justify-between">
           {/* Logo Section */}
           <div className="flex items-center justify-start">
-            <a href="#" className="flex items-center">
+            <a href="/main" className="flex items-center">
               <img src={logoImage} className="sm:h-12 md:h-20" alt="Amazon Logo" />
             </a>
           </div>
