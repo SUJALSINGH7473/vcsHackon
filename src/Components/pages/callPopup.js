@@ -1,13 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Phone, User, Bot, Play, StopCircle, RotateCw, Send, Volume2 } from "lucide-react";
+import {
+  Phone,
+  User,
+  Bot,
+  Play,
+  StopCircle,
+  RotateCw,
+  Send,
+  Volume2,
+} from "lucide-react";
 import axios from "axios";
 import AWS from "aws-sdk";
 import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
-import { useNavigate } from 'react-router-dom';
-import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../utils/firebase';
+import { useNavigate } from "react-router-dom";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../utils/firebase";
+import {ThreeDots} from "react-loader-spinner";
 
 AWS.config.update({
   region: "us-east-1",
@@ -19,116 +35,56 @@ AWS.config.update({
 
 function CallPopup({ onClose, mediaRecorder, category }) {
   const navigate = useNavigate();
-  //const [audioData, setAudioData] = useState(null);
+  const [audioData, setAudioData] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isBotSpeaking, setIsBotSpeaking] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const [botAudio, setBotAudio] = useState(null); // State to keep track of the bot audio element
   // const [mediaBlobUrl, setMediaBlobUrl] = useState(null); // State to hold the media blob URL
   const { startRecording, stopRecording, mediaBlobUrl } = mediaRecorder;
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
 
- 
-  // const playWelcomeAudio=async()=>{
-  //   if (popupAudioRef.current) {
-  //     popupAudioRef.current.play();
-  //     setIsBotSpeaking(true);
-  //     popupAudioRef.current.onended = () => setIsBotSpeaking(false);
-  //   }
-  // }
-
-  
-  useEffect(() => {
-    const createSession = async () => {
-      const userUID = localStorage.getItem('uid');
-      if (!userUID) {
-        console.error("User UID not found in localStorage");
-        return;
-      }
-  
-      try {
-        const sessionsCollectionRef = collection(db, 'sessions');
-        const newSession = {
-          questions: [],
-          answers: [],
-          embeddings: [],
-          category: category
-        };
-        const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
-  
-        const userRef = doc(db, 'Users', userUID);
-        await updateDoc(userRef, {
-          session: arrayUnion(sessionDocRef)
-        });
-  
-        const sessionId = sessionDocRef.id;
-        console.log('New session ID:', sessionId);
-        setSessionId(sessionId);
-      } catch (error) {
-        console.error("Error creating new session:", error);
-      }
+  const createSession = async () => {
+    const userUID = localStorage.getItem("uid");
+    if (!userUID) {
+      console.error("User UID not found in localStorage");
+      return;
     }
-  createSession();
-  //playWelcomeAudio();
- 
-},[]);
 
-// useEffect(() => {
-//   const createSession = async () => {
-//     const userUID = localStorage.getItem('uid');
-//     if (!userUID) {
-//       console.error("User UID not found in localStorage");
-//       return;
-//     }
+    try {
+      const sessionsCollectionRef = collection(db, "sessions");
+      const newSession = {
+        questions: [],
+        answers: [],
+        embeddings: [],
+        categories: category,
+      };
+      const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
 
-//     const maxRetries = 5;
-//     let attempt = 0;
+      const userRef = doc(db, "Users", userUID);
+      await updateDoc(userRef, {
+        session: arrayUnion(sessionDocRef),
+      });
 
-//     const attemptCreateSession = async () => {
-//       try {
-//         const sessionsCollectionRef = collection(db, 'Session');
-//         const newSession = {
-//           questions: [],
-//           answers: [],
-//           embeddings: [],
-//           category: category
-//         };
-//         const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+      const sessionId = sessionDocRef.id;
+      console.log("New session ID:", sessionId);
+      setSessionId(sessionId);
+    } catch (error) {
+      console.error("Error creating new session:", error);
+    }
+  };
 
-//         const userRef = doc(db, 'Users', userUID);
-//         await updateDoc(userRef, {
-//           session: arrayUnion(sessionDocRef)
-//         });
-
-//         const sessionId = sessionDocRef.id;
-//         console.log('New session ID:', sessionId);
-//         setSessionId(sessionId);
-//       } catch (error) {
-//         if (error.code === 'resource-exhausted') {
-//           if (attempt < maxRetries) {
-//             attempt++;
-//             const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
-//             console.error(`Resource exhausted, retrying in ${delay} ms (attempt ${attempt})`);
-//             setTimeout(attemptCreateSession, delay);
-//           } else {
-//             console.error("Max retries reached. Could not create new session:", error);
-//           }
-//         } else {
-//           console.error("Error creating new session:", error);
-//         }
-//       }
-//     };
-
-//     attemptCreateSession();
-//   };
-
-//   createSession();
-//   //playWelcomeAudio();
-// }, []);
-
-
+  useEffect(() => {
+    createSession();
+    if (popupAudioRef.current) {
+      popupAudioRef.current.play();
+      setIsBotSpeaking(true);
+      popupAudioRef.current.onended = () => setIsBotSpeaking(false);
+    }
+  }, []);
 
   const handleStart = async () => {
     startRecording();
@@ -153,7 +109,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
   const discardRecording = () => {
     stopRecording();
-   // setAudioData(null);
+    setAudioData(null);
     // setMediaBlobUrl(null); // Clear the media blob URL
     toast.info("Recording discarded");
     console.log("Recording discarded");
@@ -168,56 +124,58 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
     try {
       toast.info("Processing...");
+      setIsLoading(true);
       console.log("Preparing to send audio file from:", mediaBlobUrl);
 
       const response = await fetch(mediaBlobUrl);
       const blob = await response.blob();
-      const audioBlob = new Blob([blob], { type: 'audio/mpeg' });
+      const audioBlob = new Blob([blob], { type: "audio/mpeg" });
 
       const formData = new FormData();
       formData.append("file", audioBlob, "recording.mp3");
 
       const uid = localStorage.getItem("uid");
-      const language=localStorage.getItem('language');
       formData.append("category", category);
       formData.append("uid", uid);
       formData.append("sessionId", sessionId);
-      formData.append("language", language);
 
       const backendUrl = "https://hackon-slva.onrender.com/get_response";
       const audioResponse = await axios.post(backendUrl, formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-        responseType: 'arraybuffer'
+        responseType: "arraybuffer",
       });
+      setIsLoading(false);
       // Convert response data to string to check for errors
-  const responseText = new TextDecoder('utf-8').decode(audioResponse.data);
+      const responseText = new TextDecoder("utf-8").decode(audioResponse.data);
 
-  // Try to parse the response text as JSON
-  let responseData;
-  try {
-    responseData = JSON.parse(responseText);
-  } catch (error) {
-    responseData = null;
-  }
+      // Try to parse the response text as JSON
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (error) {
+        responseData = null;
+      }
 
-  // Check if the response is an error message
-  if (responseData && responseData.Error) {
-    console.error("Error fetching the result:", responseData.Error);
-    toast.error('Error fetching the result');
-    return;
-  }
+      // Check if the response is an error message
+      if (responseData && responseData.Error) {
+        console.error("Error fetching the result:", responseData.Error);
+        toast.error("Error fetching the result");
+        return;
+      }
       toast.success("Audio sent successfully!");
       console.log(audioResponse);
       if (audioResponse.data.Error) {
         console.error("Error fetching the result");
-        toast.error('Error fetching the result');
+        toast.error("Error fetching the result");
         return;
       }
 
       const audioArrayBuffer = audioResponse.data;
-      const audioBlobResponse = new Blob([audioArrayBuffer], { type: 'audio/mpeg' });
+      const audioBlobResponse = new Blob([audioArrayBuffer], {
+        type: "audio/mpeg",
+      });
       const audioUrlObject = URL.createObjectURL(audioBlobResponse);
 
       setIsBotSpeaking(true);
@@ -231,7 +189,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
         URL.revokeObjectURL(audioUrlObject);
       };
 
-      //setAudioData(null);
+      setAudioData(null);
       // setMediaBlobUrl(null); // Clear the media blob URL after sending
     } catch (error) {
       console.error("Error uploading or sending audio:", error);
@@ -247,14 +205,14 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       botAudio.currentTime = 0; // Reset the bot's response audio
       setBotAudio(null); // Clear the bot audio reference
     }
-  
+
     // Reset the bot speaking state
     setIsBotSpeaking(false);
     // Clear any audio data and close the popup
-  //  setAudioData(null);
+    setAudioData(null);
     // setMediaBlobUrl(null); // Clear the media blob URL
     onClose();
-    navigate('/feedback');
+    navigate("/feedback");
   };
 
   const handleVolumeButtonClick = () => {
@@ -263,18 +221,18 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       popupAudioRef.current.pause();
       popupAudioRef.current.currentTime = 0;
     }
-  
+
     if (volumeAudioRef.current && !volumeAudioRef.current.paused) {
       volumeAudioRef.current.pause();
       volumeAudioRef.current.currentTime = 0;
     }
-  
+
     // Check if there is a bot response audio playing
     if (botAudio && !botAudio.paused) {
       botAudio.pause();
       botAudio.currentTime = 0;
     }
-  
+
     // Play the volume audio
     if (volumeAudioRef.current) {
       volumeAudioRef.current.play();
@@ -282,7 +240,6 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       volumeAudioRef.current.onended = () => setIsBotSpeaking(false);
     }
   };
-  
 
   const stopBotSpeaking = () => {
     if (popupAudioRef.current) {
@@ -298,6 +255,11 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+      {isLoading && (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50">
+          <ThreeDots color="#FFFFFF" height={80} width={80} />
+        </div>
+      )}
       <div className="relative bg-white w-[800px] rounded-lg shadow-lg p-8">
         <audio ref={popupAudioRef} src={welcomeAudio} />
         <audio ref={volumeAudioRef} src={queryAudio} />
@@ -367,7 +329,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
             <div className="flex flex-col items-center">
               <div
                 className={`flex items-center justify-center w-10 h-10 bg-black rounded-full ${
-                  (!isRecording && !isBotSpeaking)
+                  !isRecording && !isBotSpeaking
                     ? "opacity-50 cursor-not-allowed"
                     : "opacity-100 cursor-pointer hover:border-2 hover:border-red-300"
                 }`}
