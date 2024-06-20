@@ -33,7 +33,7 @@
 //   const createSession = async()=>{
 //      // Retrieve the user UID from localStorage
 //      const userUID = localStorage.getItem('uid');
-        
+
 //      if (!userUID) {
 //          console.error("User UID not found in localStorage");
 //          return;
@@ -68,7 +68,7 @@
 //       }
 //   }
 //   useEffect(() => {
-//     //create the session id 
+//     //create the session id
 //     createSession();
 //     if (popupAudioRef.current) {
 //       popupAudioRef.current.play();
@@ -208,20 +208,32 @@
 //     setIsBotSpeaking(false); // Ensure bot speaking state is set to false
 //   };
 
-
-
-
-
 import React, { useState, useEffect, useRef } from "react";
-import { Phone, User, Bot, Play, StopCircle, RotateCw, Send, Volume2 } from "lucide-react";
+import {
+  Phone,
+  User,
+  Bot,
+  Play,
+  StopCircle,
+  RotateCw,
+  Send,
+  Volume2,
+} from "lucide-react";
 import axios from "axios";
 import AWS from "aws-sdk";
 import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
-import { useNavigate } from 'react-router-dom';
-import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../utils/firebase';
+import { useNavigate } from "react-router-dom";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../../utils/firebase";
+import {ThreeDots} from "react-loader-spinner";
 
 AWS.config.update({
   region: "us-east-1",
@@ -240,39 +252,40 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   const [botAudio, setBotAudio] = useState(null); // State to keep track of the bot audio element
   // const [mediaBlobUrl, setMediaBlobUrl] = useState(null); // State to hold the media blob URL
   const { startRecording, stopRecording, mediaBlobUrl } = mediaRecorder;
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
 
   const createSession = async () => {
-    const userUID = localStorage.getItem('uid');
+    const userUID = localStorage.getItem("uid");
     if (!userUID) {
       console.error("User UID not found in localStorage");
       return;
     }
 
     try {
-      const sessionsCollectionRef = collection(db, 'sessions');
+      const sessionsCollectionRef = collection(db, "sessions");
       const newSession = {
         questions: [],
         answers: [],
         embeddings: [],
-        category: category
+        category: category,
       };
       const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
 
-      const userRef = doc(db, 'Users', userUID);
+      const userRef = doc(db, "Users", userUID);
       await updateDoc(userRef, {
-        session: arrayUnion(sessionDocRef)
+        session: arrayUnion(sessionDocRef),
       });
 
       const sessionId = sessionDocRef.id;
-      console.log('New session ID:', sessionId);
+      console.log("New session ID:", sessionId);
       setSessionId(sessionId);
     } catch (error) {
       console.error("Error creating new session:", error);
     }
-  }
+  };
 
   useEffect(() => {
     createSession();
@@ -321,11 +334,12 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
     try {
       toast.info("Processing...");
+      setIsLoading(true);
       console.log("Preparing to send audio file from:", mediaBlobUrl);
 
       const response = await fetch(mediaBlobUrl);
       const blob = await response.blob();
-      const audioBlob = new Blob([blob], { type: 'audio/mpeg' });
+      const audioBlob = new Blob([blob], { type: "audio/mpeg" });
 
       const formData = new FormData();
       formData.append("file", audioBlob, "recording.mp3");
@@ -338,37 +352,40 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       const backendUrl = "https://hackon-slva.onrender.com/get_response";
       const audioResponse = await axios.post(backendUrl, formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
-        responseType: 'arraybuffer'
+        responseType: "arraybuffer",
       });
+      setIsLoading(false);
       // Convert response data to string to check for errors
-  const responseText = new TextDecoder('utf-8').decode(audioResponse.data);
+      const responseText = new TextDecoder("utf-8").decode(audioResponse.data);
 
-  // Try to parse the response text as JSON
-  let responseData;
-  try {
-    responseData = JSON.parse(responseText);
-  } catch (error) {
-    responseData = null;
-  }
+      // Try to parse the response text as JSON
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (error) {
+        responseData = null;
+      }
 
-  // Check if the response is an error message
-  if (responseData && responseData.Error) {
-    console.error("Error fetching the result:", responseData.Error);
-    toast.error('Error fetching the result');
-    return;
-  }
+      // Check if the response is an error message
+      if (responseData && responseData.Error) {
+        console.error("Error fetching the result:", responseData.Error);
+        toast.error("Error fetching the result");
+        return;
+      }
       toast.success("Audio sent successfully!");
       console.log(audioResponse);
       if (audioResponse.data.Error) {
         console.error("Error fetching the result");
-        toast.error('Error fetching the result');
+        toast.error("Error fetching the result");
         return;
       }
 
       const audioArrayBuffer = audioResponse.data;
-      const audioBlobResponse = new Blob([audioArrayBuffer], { type: 'audio/mpeg' });
+      const audioBlobResponse = new Blob([audioArrayBuffer], {
+        type: "audio/mpeg",
+      });
       const audioUrlObject = URL.createObjectURL(audioBlobResponse);
 
       setIsBotSpeaking(true);
@@ -398,14 +415,14 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       botAudio.currentTime = 0; // Reset the bot's response audio
       setBotAudio(null); // Clear the bot audio reference
     }
-  
+
     // Reset the bot speaking state
     setIsBotSpeaking(false);
     // Clear any audio data and close the popup
     setAudioData(null);
     // setMediaBlobUrl(null); // Clear the media blob URL
     onClose();
-    navigate('/feedback');
+    navigate("/feedback");
   };
 
   const handleVolumeButtonClick = () => {
@@ -414,18 +431,18 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       popupAudioRef.current.pause();
       popupAudioRef.current.currentTime = 0;
     }
-  
+
     if (volumeAudioRef.current && !volumeAudioRef.current.paused) {
       volumeAudioRef.current.pause();
       volumeAudioRef.current.currentTime = 0;
     }
-  
+
     // Check if there is a bot response audio playing
     if (botAudio && !botAudio.paused) {
       botAudio.pause();
       botAudio.currentTime = 0;
     }
-  
+
     // Play the volume audio
     if (volumeAudioRef.current) {
       volumeAudioRef.current.play();
@@ -433,7 +450,6 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       volumeAudioRef.current.onended = () => setIsBotSpeaking(false);
     }
   };
-  
 
   const stopBotSpeaking = () => {
     if (popupAudioRef.current) {
@@ -449,6 +465,11 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+      {isLoading && (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50">
+          <ThreeDots color="#FFFFFF" height={80} width={80} />
+        </div>
+      )}
       <div className="relative bg-white w-[800px] rounded-lg shadow-lg p-8">
         <audio ref={popupAudioRef} src={welcomeAudio} />
         <audio ref={volumeAudioRef} src={queryAudio} />
@@ -518,7 +539,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
             <div className="flex flex-col items-center">
               <div
                 className={`flex items-center justify-center w-10 h-10 bg-black rounded-full ${
-                  (!isRecording && !isBotSpeaking)
+                  !isRecording && !isBotSpeaking
                     ? "opacity-50 cursor-not-allowed"
                     : "opacity-100 cursor-pointer hover:border-2 hover:border-red-300"
                 }`}
