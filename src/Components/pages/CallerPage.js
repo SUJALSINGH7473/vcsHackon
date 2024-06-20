@@ -65,6 +65,8 @@ function MainPage() {
   const mediaRecorder = useReactMediaRecorder({ audio: true });
   
   useEffect(() => {
+    
+  
     toast.success("Click on Call Now");
   }, [categorySelected]);
 

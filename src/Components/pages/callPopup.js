@@ -73,7 +73,61 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   createSession();
   //playWelcomeAudio();
  
-});
+},[]);
+
+// useEffect(() => {
+//   const createSession = async () => {
+//     const userUID = localStorage.getItem('uid');
+//     if (!userUID) {
+//       console.error("User UID not found in localStorage");
+//       return;
+//     }
+
+//     const maxRetries = 5;
+//     let attempt = 0;
+
+//     const attemptCreateSession = async () => {
+//       try {
+//         const sessionsCollectionRef = collection(db, 'Session');
+//         const newSession = {
+//           questions: [],
+//           answers: [],
+//           embeddings: [],
+//           category: category
+//         };
+//         const sessionDocRef = await addDoc(sessionsCollectionRef, newSession);
+
+//         const userRef = doc(db, 'Users', userUID);
+//         await updateDoc(userRef, {
+//           session: arrayUnion(sessionDocRef)
+//         });
+
+//         const sessionId = sessionDocRef.id;
+//         console.log('New session ID:', sessionId);
+//         setSessionId(sessionId);
+//       } catch (error) {
+//         if (error.code === 'resource-exhausted') {
+//           if (attempt < maxRetries) {
+//             attempt++;
+//             const delay = Math.pow(2, attempt) * 1000; // Exponential backoff
+//             console.error(`Resource exhausted, retrying in ${delay} ms (attempt ${attempt})`);
+//             setTimeout(attemptCreateSession, delay);
+//           } else {
+//             console.error("Max retries reached. Could not create new session:", error);
+//           }
+//         } else {
+//           console.error("Error creating new session:", error);
+//         }
+//       }
+//     };
+
+//     attemptCreateSession();
+//   };
+
+//   createSession();
+//   //playWelcomeAudio();
+// }, []);
+
 
 
   const handleStart = async () => {
