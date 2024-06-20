@@ -332,6 +332,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
         const id = await createSession(category);
         setSessionId(id);
 
+        console.log('hello')
         if (popupAudioRef.current) {
           popupAudioRef.current.play();
           setIsBotSpeaking(true);
