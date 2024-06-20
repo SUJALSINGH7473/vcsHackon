@@ -117,6 +117,34 @@ This command will start the application and open it in your default web browser 
 ## Getting Started with Backend
 Follow these steps to set up and run the frontend of the project:
 
+### Step 1: Clone the Repository
+
+Clone the project repository to your local machine. Use the following command in your terminal:
+```sh
+ git clone https://github.com/AnupamMittal-21/HackOn.git
+```
+### Step 2: Navigate to the Project Directory
+ ```sh
+   cd vcsHackon/backend
+   ```
+### Step 3: Set Up a Virtual Environment
+Setting up a virtual environment helps to isolate the project dependencies from your global Python environment:
+ ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+### Step 4: Install the Required Dependencies
+
+Install all the necessary dependencies listed in the requirements.txt file:
+```sh
+pip install -r requirements.txt
+```
+
+### Step 5: Run the Main Application
+Finally, start the development server by running:
+```sh
+   python main.py
+```
 
 ## Technologies Used
 - React.js
@@ -136,6 +164,9 @@ Follow these steps to set up and run the frontend of the project:
 ![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/1970e99a-b830-4926-91b2-5d2529940173)
 ### Home Page
 ![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/360dd9c0-833a-4e5f-b560-6b1bba9712bf)
+### Caller Service
+![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/fe6eddc4-c884-4a30-a533-5d8a06336b86)
+
 ### Our Services
 ![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/92ccb3a6-d069-412c-90ac-9f878725f246)
 ### FAQs
