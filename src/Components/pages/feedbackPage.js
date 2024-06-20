@@ -5,6 +5,7 @@ import 'tailwindcss/tailwind.css';
 import { db } from '../../utils/firebase'
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function FeedbackPage() {
   const navigate = useNavigate();
