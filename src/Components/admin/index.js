@@ -57,8 +57,6 @@ function AdminFeedbackPage() {
 
   const serviceRatings = feedbackData.map(data => data.serviceRating);
   const issueResolutions = feedbackData.map(data => data.issueResolution);
-  //const locations = feedbackData.map(data => data.location);
-
   const serviceRatingCounts = [0, 0, 0, 0, 0];
   serviceRatings.forEach(rating => {
     if (rating >= 1 && rating <= 5) {

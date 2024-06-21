@@ -5,7 +5,7 @@ import { db } from '../../utils/firebase';
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function FeedbackPage() {
   const navigate = useNavigate();

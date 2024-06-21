@@ -15,7 +15,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../footer";
 import Navbar from "../../Components/navbar/index";
-// import { categoryLabels } from "../../utils/helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -88,7 +87,7 @@ function MainPage() {
           >
             <img
               src={phone}
-              alt="Phone Icon"
+              alt="Phone"
               className="inline-block w-8 h-8 sm:w-10 sm:h-10 mr-2 transform hover:rotate-6 transition duration-300"
             />
             <span>Call now</span>
@@ -97,7 +96,8 @@ function MainPage() {
         <div className="absolute top-1/2 right-4 md:right-[50px] transform -translate-y-1/2 h-full flex items-center justify-center sm:z-0">
           <img
             src={headerImage}
-            alt="Header Images"
+            alt="Header"
+
             className="h-40 w-40 sm:h-[300px] sm:w-[300px] md:h-[500px] md:w-[500px] object-cover"
           />
         </div>
@@ -134,59 +134,58 @@ function MainPage() {
           />
         </div>
       </div> */}
-      
-      <div className="container">
-        <h1 className="text-4xl font-bold text-center py-6">What we offer?</h1>
-        <Swiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          loop={true}
-          slidesPerView={'auto'}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2.5,
-          }}
-          pagination={{ el: '.swiper-pagination', clickable: true }}
-          navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            clickable: true,
-          }}
-          modules={[EffectCoverflow, Pagination, Navigation]}
-          className="swiper_container"
-        >
-          <SwiperSlide>
-            <img src={slider1} alt="slide_image1" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider2} alt="slide_image2" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider3} alt="slide_image3" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider4} alt="slide_image4" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider5} alt="slide_image5" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider2} alt="slide_image6" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={slider4} alt="slide_image7" />
-          </SwiperSlide>
-          <div className="slider-controler">
-            <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline" />
-            <CircleArrowRight className="swiper-button-next slider-arrow" name="arrow-forward-outline" />
-            <div className="swiper-pagination"></div>
-          </div>
-        </Swiper>
-      </div>
-
+     
+    <div className="container">
+      <h1 className="text-4xl font-bold text-center py-6">What we offer?</h1>
+      <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={'auto'}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={{ el: '.swiper-pagination', clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+          clickable: true,
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className="swiper_container"
+      >
+        <SwiperSlide>
+          <img src={slider1} alt="Offer Slide 1" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider2} alt="Offer Slide 2" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider3} alt="Offer Slide 3" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider4} alt="Offer Slide 4" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider5} alt="Offer Slide 5" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider2} alt="Offer Slide 6" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider4} alt="Offer Slide 7" />
+        </SwiperSlide>
+        <div className="slider-controler">
+          <CircleArrowLeft className="swiper-button-prev slider-arrow" name="arrow-back-outline"/>
+          <CircleArrowRight className="swiper-button-next slider-arrow" name="arrow-forward-outline"/>
+          <div className="swiper-pagination"></div>
+        </div>
+      </Swiper>
+    </div>
       <div className="px-4">
         <About />
       </div>

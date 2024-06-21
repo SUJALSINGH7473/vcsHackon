@@ -21,7 +21,6 @@ export const signUpUser = createAsyncThunk(
       await setDoc(doc(db, 'Users', user.uid), {
         email,
         password,
-        
         ...otherData
       });
 
