@@ -406,7 +406,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
           "Content-Type": "multipart/form-data",
         },
         responseType: "arraybuffer",
-        timeout: 1000
+        timeout: 30000
       });
       setIsLoading(false);
       // Convert response data to string to check for errors
