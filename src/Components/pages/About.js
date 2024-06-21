@@ -2,7 +2,7 @@ import React from 'react';
 import Tk from '../../../src/utils/images/Tk.jpg';
 import sujal from '../../../src/utils/images/sujal.png';
 import anupam from '../../../src/utils/images/anupam.jpg';
-import apoorv from '../../../src/utils/images/apoorv.jpg';
+import apoorv from '../../../src/utils/images/apoorv.jpg'
 
 export default function About() {
   return (

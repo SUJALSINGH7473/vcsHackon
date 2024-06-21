@@ -8,7 +8,7 @@ import { FaHome, FaInfoCircle, FaLock, FaGlobe } from 'react-icons/fa';
 const languages = [
   'English', 'Hindi', 'Spanish', 'French', 'German',
   'Chinese', 'Japanese', 'Russian', 'Portuguese', 'Italian',
-  'Korean', 'Arabic', 'Turkish', 'Dutch', 'Swedish', 'Greek', 'Polish'
+  'Korean', 'Arabic', 'Turkish', 'Dutch', 'Swedish', 'Polish'
 ];
 
 class Navbar extends React.Component {
@@ -20,6 +20,7 @@ class Navbar extends React.Component {
 
   async componentDidMount() {
     const uid = localStorage.getItem('uid');
+
     if (uid) {
       const userRef = doc(db, 'Users', uid);
       const userDoc = await getDoc(userRef);
@@ -27,11 +28,13 @@ class Navbar extends React.Component {
       if (userDoc.exists()) {
         const userData = userDoc.data();
         this.setState({
+
           firstName: userData.firstName,
           lastName: userData.lastName,
           selectedLanguage: userData.language || 'English'
+
         });
-        localStorage.setItem('language', userData.language);
+        localStorage.setItem(`language`,userData.language);
       }
     }
   }
@@ -50,11 +53,12 @@ class Navbar extends React.Component {
   handleLanguageChange = async (event) => {
     const newLanguage = event.target.value;
     this.setState({ selectedLanguage: newLanguage });
-
+  
     const uid = localStorage.getItem('uid');
     if (uid) {
       try {
         const userRef = doc(db, 'Users', uid);
+  
         await updateDoc(userRef, {
           language: newLanguage
         });
@@ -65,6 +69,7 @@ class Navbar extends React.Component {
       }
     }
   };
+  
 
   render() {
     const { firstName, lastName, selectedLanguage } = this.state;
