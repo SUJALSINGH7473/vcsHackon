@@ -1,8 +1,7 @@
-Here's the updated README incorporating the details from the provided image:
+# Virtual Customer Service - Your Satisfaction, Our Priority.
 
 ---
 
-# Virtual Customer Service - Your Satisfaction, Our Priority.
 
 ## Overview
 Virtual Customer Service is a web-based application designed to streamline customer support for `Amazon`. It replaces traditional chatbots by taking user input through voice and providing accurate responses based on the query. With support for multiple languages, it offers a simple and efficient way to help customers around the world.
