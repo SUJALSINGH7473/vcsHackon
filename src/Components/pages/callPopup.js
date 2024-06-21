@@ -224,6 +224,7 @@ import AWS from "aws-sdk";
 import { toast } from "react-toastify";
 import queryAudio from "../../utils/audios/query.mp3";
 import welcomeAudio from "../../utils/audios/welcome_theme.mp3";
+import errorAudio from "../../utils/audios/error.mp3";
 import { useNavigate } from "react-router-dom";
 import {
   addDoc,
@@ -286,7 +287,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
 
   const volumeAudioRef = useRef(null);
   const popupAudioRef = useRef(null);
-
+  const errorAudioRef = useRef(null);
   // const createSession = async () => {
   //   const userUID = localStorage.getItem("uid");
   //   if (!userUID) {
@@ -393,6 +394,8 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       formData.append("file", audioBlob, "recording.mp3");
 
       const uid = localStorage.getItem("uid");
+      const language = localStorage.getItem('language');
+      formData.append("language", language);
       formData.append("category", category);
       formData.append("uid", uid);
       formData.append("sessionId", sessionId);
@@ -403,6 +406,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
           "Content-Type": "multipart/form-data",
         },
         responseType: "arraybuffer",
+        timeout: 1000
       });
       setIsLoading(false);
       // Convert response data to string to check for errors
@@ -415,21 +419,20 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       } catch (error) {
         responseData = null;
       }
-
+      
+      toast.success("Audio sent successfully!");
       // Check if the response is an error message
       if (responseData && responseData.Error) {
         console.error("Error fetching the result:", responseData.Error);
         toast.error("Error fetching the result");
+        if (errorAudioRef.current) {
+          errorAudioRef.current.play();
+          setIsBotSpeaking(true);
+          errorAudioRef.current.onended = () => setIsBotSpeaking(false);
+        }
         return;
       }
-      toast.success("Audio sent successfully!");
       console.log(audioResponse);
-      if (audioResponse.data.Error) {
-        console.error("Error fetching the result");
-        toast.error("Error fetching the result");
-        return;
-      }
-
       const audioArrayBuffer = audioResponse.data;
       const audioBlobResponse = new Blob([audioArrayBuffer], {
         type: "audio/mpeg",
@@ -450,6 +453,12 @@ function CallPopup({ onClose, mediaRecorder, category }) {
     } catch (error) {
       console.error("Error uploading or sending audio:", error);
       toast.error("Failed to send audio");
+      setIsLoading(false);
+      if (errorAudioRef.current) {
+        errorAudioRef.current.play();
+        setIsBotSpeaking(true);
+        errorAudioRef.current.onended = () => setIsBotSpeaking(false);
+      }
     }
   };
 
@@ -505,6 +514,11 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       volumeAudioRef.current.pause();
       volumeAudioRef.current.currentTime = 0;
     }
+    if(errorAudioRef.current)
+    {
+      errorAudioRef.current.pause();
+      errorAudioRef.current.currentTime = 0;
+    }
     setIsBotSpeaking(false);
   };
 
@@ -518,7 +532,8 @@ function CallPopup({ onClose, mediaRecorder, category }) {
       <div className="relative bg-white w-[800px] rounded-lg shadow-lg p-8">
         <audio ref={popupAudioRef} src={welcomeAudio} />
         <audio ref={volumeAudioRef} src={queryAudio} />
-        <button
+        <audio ref={errorAudioRef} src={errorAudio} /> 
+         <button
           title="Instructions..."
           onClick={handleVolumeButtonClick}
           className="absolute top-4 left-4 w-12 h-12 bg-black text-white flex items-center justify-center rounded-full"

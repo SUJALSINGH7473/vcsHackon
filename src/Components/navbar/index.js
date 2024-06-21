@@ -31,6 +31,7 @@ class Navbar extends React.Component {
           lastName: userData.lastName,
           selectedLanguage: userData.language || 'English'
         });
+        localStorage.setItem('language', userData.language);
       }
     }
   }
@@ -57,6 +58,7 @@ class Navbar extends React.Component {
         await updateDoc(userRef, {
           language: newLanguage
         });
+        localStorage.setItem('language', newLanguage);
         console.log('Language updated successfully');
       } catch (error) {
         console.error('Error updating language:', error);
@@ -83,7 +85,7 @@ class Navbar extends React.Component {
               <FaHome className="mr-2 text-gray-500" />
               <span className="font-bold">Home</span>
             </a>
-            <a href="/about" className="flex items-center text-gray-700 hover:text-black transition duration-300">
+            <a target='blank' href="https://vcs-about-us.vercel.app/" className="flex items-center text-gray-700 hover:text-black transition duration-300" >
               <FaInfoCircle className="mr-2 text-gray-500" />
               <span>About Us</span>
             </a>
