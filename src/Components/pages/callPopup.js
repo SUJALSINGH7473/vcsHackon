@@ -509,7 +509,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
       {isLoading && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-50">
           <ThreeDots color="#FFFFFF" height={80} width={80} />
