@@ -83,7 +83,7 @@ Follow these steps to set up and run the frontend of the project:
 
 Clone the project repository to your local machine. Use the following command in your terminal:
 ```sh
- git clone https://github.com/Tushar-022/vcsHackon.git
+ git clone https://github.com/Tushar-022/vcsHackon/tree/master/frontend.git
 ```
 ### Step 2: Navigate to the Project Directory
  ```sh
@@ -116,7 +116,7 @@ Finally, start the development server by running:
 This command will start the application and open it in your default web browser at http://localhost:3000.
 
 ## Getting Started with Backend
-Follow these steps to set up and run the frontend of the project:
+Follow these steps to set up and run the backend of the project:
 
 ### Step 1: Clone the Repository
 
