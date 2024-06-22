@@ -36,22 +36,14 @@ const Footer = () => {
         <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Sell on Amazon</a></li>
         <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Sell under Amazon Accelerator</a></li>
         <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Protect and Build Your Brand</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon Global Selling</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Become an Affiliate</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Fulfillment by Amazon</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Advertise Your Products</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon Pay on Merchants</a></li>
+
       </ul>
     </div>
     <div>
-      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Let Us Help You</h3>
+      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Support and Assistance</h3>
       <ul className="space-y-1">
         <li><a href="/privacy" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Privacy-Policy</a></li>
         <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Your Account</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Returns Centre</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">100% Purchase Protection</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon App Download</a></li>
-        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Help</a></li>
       </ul>
     </div>
   </div>

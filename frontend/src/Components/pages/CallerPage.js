@@ -78,11 +78,11 @@ function MainPage() {
       <Navbar />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
       <div className="relative md:h-80 sm:h-75 bg-blue-500 text-white flex items-center justify-between overflow-visible mt-12 mx-4 sm:mx-10 md:mx-12 lg:mx-14 rounded-3xl">
-  <div className="px-4 sm:px-10 md:px-16 lg:px-20 p-4">
-    <h1 className="text-base sm:text-base md:text-3xl lg:text-5xl font-bold">
-      HOW CAN WE
+  <div className="px-4 sm:px-10 md:px-14 lg:px-20 p-4">
+    <h1 className="text-xs sm:text-base md:text-xl lg:text-4xl font-bold">
+      HOW CAN SAHAYAK
     </h1>
-    <h1 className="text-base sm:text-base md:text-3xl lg:text-5xl font-bold">
+    <h1 className="text-xs sm:text-base md:text-xl lg:text-4xl font-bold">
       HELP YOU TODAY?
     </h1>
     <button
@@ -101,7 +101,7 @@ function MainPage() {
     <img
       src={headerImage}
       alt="Header"
-      className="h-[12rem] sm:w-[18rem] sm:h-[14rem]  md:h-[32rem] md:w-auto lg:h-[30rem] lg:w-[36rem] object-cover transform transition duration-500 ease-in-out  "
+      className="h-[12rem] sm:w-[18rem] sm:h-[14rem]  md:h-[30rem] md:w-auto lg:h-[30rem] lg:w-[36rem] object-cover transform transition duration-500 ease-in-out  "
     />
   </div>
 </div>

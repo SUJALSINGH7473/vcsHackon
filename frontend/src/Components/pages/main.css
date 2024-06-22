@@ -70,6 +70,7 @@
   justify-content: center;
 }
 
+
 @media (max-width: 990px) {
   .slider-controler .swiper-button-next {
     margin-left: auto; /* Push next button to the right */
