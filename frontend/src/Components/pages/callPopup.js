@@ -161,7 +161,7 @@ function CallPopup({ onClose, mediaRecorder, category }) {
         },
         responseType: "arraybuffer",
 
-        timeout: 600000
+        timeout: 30000
       });
       setIsLoading(false);
       // Convert response data to string to check for errors

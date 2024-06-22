@@ -11,51 +11,52 @@ const Footer = () => {
 
 
     <footer className="bg-gray-800 text-white py-6">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <h3 className="font-bold mb-2">Get to Know Us</h3>
-            <ul>
-              <li><a href="/about" className="text-gray-400 hover:text-gray-200">About Us</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Careers</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Press Releases</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Amazon Science</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">Connect with Us</h3>
-            <ul>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Facebook</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Twitter</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Instagram</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">Make Money with Us</h3>
-            <ul>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Sell on Amazon</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Sell under Amazon Accelerator</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Protect and Build Your Brand</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Amazon Global Selling</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Become an Affiliate</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Fulfillment by Amazon</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Advertise Your Products</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Amazon Pay on Merchants</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold mb-2">Let Us Help You</h3>
-            <ul>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">COVID-19 and Amazon</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Your Account</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Returns Centre</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">100% Purchase Protection</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Amazon App Download</a></li>
-              <li><a href="/main" className="text-gray-400 hover:text-gray-200">Help</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div className="container mx-auto px-4">
+  <div className="grid grid-cols-4 gap-4">
+    <div>
+      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Get to Know Us</h3>
+      <ul className="space-y-1">
+        <li><a target='blank' href="https://vcs-about-us.vercel.app/"  className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">About Us</a></li>
+        {/* <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Careers</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Press Releases</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon Science</a></li> */}
+      </ul>
+    </div>
+    <div>
+      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Connect with Us</h3>
+      <ul className="space-y-1">
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Facebook</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Twitter</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Make Money with Us</h3>
+      <ul className="space-y-1">
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Sell on Amazon</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Sell under Amazon Accelerator</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Protect and Build Your Brand</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon Global Selling</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Become an Affiliate</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Fulfillment by Amazon</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Advertise Your Products</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon Pay on Merchants</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 className="font-bold mb-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">Let Us Help You</h3>
+      <ul className="space-y-1">
+        <li><a href="/privacy" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Privacy-Policy</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Your Account</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Returns Centre</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">100% Purchase Protection</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Amazon App Download</a></li>
+        <li><a href="/main" className="text-gray-400 hover:text-gray-200 text-xs sm:text-sm md:text-base lg:text-lg">Help</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
     </footer>
   </div>
   );

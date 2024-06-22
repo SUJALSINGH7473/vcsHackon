@@ -1,11 +1,13 @@
-// src/components/pages/SignUp.js
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUpUser } from '../auth/authSlice';
-import { FaGoogle } from 'react-icons/fa';
+import Login from '../login/login';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const clientId = "487895901510-ik308kf6434tkp9vn2v5674l94mlm5i8.apps.googleusercontent.com";
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
@@ -133,15 +135,19 @@ function SignUp() {
             </Field>
             <ErrorMessage name="language" component="p" className="text-red-500 text-xs md:text-sm mt-1" />
           </div>
+
           <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded w-full hover:bg-blue-600 transition-colors duration-300 text-sm md:text-base" disabled={isSubmitting || authStatus === 'loading'}>
             {isSubmitting || authStatus === 'loading' ? 'Creating Account...' : 'Create Account'}
           </button>
-          <div className="text-center mt-4">
-            <p className="text-gray-600 text-xs md:text-sm">Or</p>
-            <button type="button" className="bg-gray-100 text-black py-2 px-4 rounded w-full mt-2 hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center text-sm md:text-base">
-              <FaGoogle className="mr-2" /> Sign up with Google
-            </button>
-          </div>
+
+          <GoogleOAuthProvider clientId={clientId}>
+            <div className="text-center mt-4">
+                <p className="text-gray-600 text-xs md:text-sm">Or</p>
+                <div className=" text-black py-2 px-4 rounded w-full mt-2  transition-colors duration-300 flex items-center justify-center text-sm md:text-base">           
+                    <Login />
+                </div>
+            </div>
+        </GoogleOAuthProvider>
         </Form>
       )}
     </Formik>
