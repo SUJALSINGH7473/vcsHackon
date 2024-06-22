@@ -179,6 +179,8 @@ Finally, start the development server by running:
 
 ### About Us
 ![image](https://github.com/Tushar-022/vcsHackon/assets/96460114/a353bdd1-6a50-41af-a3bd-7494804858c8)
+![image](https://github.com/Tushar-022/vcsHackon/assets/96460114/63437f53-84bc-403f-a3ed-8c6ea6acb00a)
+
 
 
 
