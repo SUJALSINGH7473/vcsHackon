@@ -52,7 +52,7 @@ function MainPage() {
         <div
           className={`p-6 bg-white rounded shadow-md overflow-hidden relative transform transition-transform duration-300 ease-in-out hover:scale-105 hover:rotate-x-10 hover:rotate-y-6 ${
             index === categorySelected
-              ? "border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-200 scale-105"
+              ? "border-2 border-green-500 font-bold text-gray-700 shadow-lg bg-green-300 scale-105"
               : ""
           }`}
         >
@@ -77,35 +77,34 @@ function MainPage() {
     <div className="min-h-screen bg-gray-100 max-w-12xl mx-auto">
       <Navbar />
       <ToastContainer position="top-center" autoClose={3000} hideProgressBar />
-      <div className="relative  md:h-80  sm:h-75 bg-blue-500 text-white flex items-center justify-between overflow-visible mt-12 mx-4 sm:mx-10 md:mx-12 lg:mx-14 rounded-3xl">
-        <div className="px-4 sm:px-10 md:px-16 lg:px-20 p-4">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">
-            HOW CAN WE
-          </h1>
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">
-            HELP YOU TODAY?
-          </h1>
-          <button
-            onClick={openPopup}
-            className="mt-4 sm:mb-4 md:mb-6 lg:mb-8  px-4 sm:px-6 md:px-8 lg:px-8 py-2 sm:py-2 md:py-3 lg:py-3 bg-gradient-to-r from-green-400 to-green-500 text-white text-sm sm:text-base md:text-lg lg:text-lg font-bold rounded-lg shadow-xl hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition duration-300 ease-in-out flex items-center"
-          >
-            <img
-              src={phone}
-              alt="Phone"
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10 mr-2 transform hover:rotate-6 transition duration-300"
-            />
-            <span>Call now</span>
-          </button>
-        </div>
-        <div className="absolute top-1/2 right-4 sm:right-10 md:right-12 lg:right-16 transform -translate-y-1/2 h-full flex items-center justify-center">
-          <img
-            src={headerImage}
-            alt="Header"
-            className="h-24 w-24 sm:h-40 sm:w-40 md:h-60 md:w-60 lg:h-80 lg:w-80 object-cover"
-          />
-        </div>
-      </div>
-
+      <div className="relative md:h-80 sm:h-75 bg-blue-500 text-white flex items-center justify-between overflow-visible mt-12 mx-4 sm:mx-10 md:mx-12 lg:mx-14 rounded-3xl">
+  <div className="px-4 sm:px-10 md:px-16 lg:px-20 p-4">
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">
+      HOW CAN WE
+    </h1>
+    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold">
+      HELP YOU TODAY?
+    </h1>
+    <button
+      onClick={openPopup}
+      className="mt-4 sm:mb-4 md:mb-6 lg:mb-8 px-4 sm:px-6 md:px-8 lg:px-8 py-2 sm:py-2 md:py-3 lg:py-3 bg-gradient-to-r from-green-400 to-green-500 text-white text-sm sm:text-base md:text-lg lg:text-lg font-bold rounded-lg shadow-xl hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 transition duration-300 ease-in-out flex items-center"
+    >
+      <img
+        src={phone}
+        alt="Phone"
+        className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-10 lg:h-10 mr-2 transform hover:rotate-6 transition duration-300"
+      />
+      <span>Call now</span>
+    </button>
+  </div>
+  <div className="absolute top-1/2 right-4 sm:right-10 md:right-12 lg:right-16 transform -translate-y-1/2 flex items-center justify-center">
+    <img
+      src={headerImage}
+      alt="Header"
+      className="h-[14rem] sm:w-[18rem] sm:h-[14rem]  md:h-[32rem] md:w-auto lg:h-[30rem] lg:w-[36rem] object-cover transform transition duration-500 ease-in-out  "
+    />
+  </div>
+</div>
       <div className="flex justify-center mt-10 px-4">
         <div className="flex flex-col p-0 m-0">
           <div className="text-center text-4xl py-8 font-bold text-gray-800">

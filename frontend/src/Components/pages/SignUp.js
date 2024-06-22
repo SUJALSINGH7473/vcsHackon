@@ -4,8 +4,6 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUpUser } from '../auth/authSlice';
-import Login from '../login/login';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const clientId = "487895901510-ik308kf6434tkp9vn2v5674l94mlm5i8.apps.googleusercontent.com";
 
@@ -140,14 +138,7 @@ function SignUp() {
             {isSubmitting || authStatus === 'loading' ? 'Creating Account...' : 'Create Account'}
           </button>
 
-          <GoogleOAuthProvider clientId={clientId}>
-            <div className="text-center mt-4">
-                <p className="text-gray-600 text-xs md:text-sm">Or</p>
-                <div className=" text-black py-2 px-4 rounded w-full mt-2  transition-colors duration-300 flex items-center justify-center text-sm md:text-base">           
-                    <Login />
-                </div>
-            </div>
-        </GoogleOAuthProvider>
+         
         </Form>
       )}
     </Formik>
