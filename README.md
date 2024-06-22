@@ -182,9 +182,9 @@ In the future, we plan to integrate video solutions within our application. User
 - **Video Playback and Interaction**: Users can view instructional videos relevant to their queries within the application.
   
 - **Timestamp Interaction**: Users can pause the video and ask the virtual assistant questions about the specific steps demonstrated at that moment.
-- 
+  
 - **Visual and Text Integration**: Implement image and video recognition capabilities to handle customer queries that involve visual data.
-- 
+  
 - **Enhanced Personalization**: Improve personalization algorithms by incorporating machine learning techniques that adapt to user preferences and behaviors in real-time.
 
 ## Conclusion
