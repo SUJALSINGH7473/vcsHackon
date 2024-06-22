@@ -3,7 +3,7 @@ import logoImage from '../../utils/images/amazon.svg';
 import { auth, db } from '../../utils/firebase';
 import defaultUser from '../../utils/images/user.svg';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { FaHome, FaInfoCircle, FaLock, FaGlobe, FaBars } from 'react-icons/fa';
+import {  FaGlobe } from 'react-icons/fa';
 
 const languages = [
   'English', 'Hindi', 'Spanish', 'French', 'German',

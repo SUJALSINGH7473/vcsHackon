@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signUpUser } from '../auth/authSlice';
 
-const clientId = "487895901510-ik308kf6434tkp9vn2v5674l94mlm5i8.apps.googleusercontent.com";
 
 const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
