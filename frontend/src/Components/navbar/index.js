@@ -85,16 +85,16 @@ class Navbar extends Component {
           </div>
 
           {/* User Profile and Language Selection */}
-          <div className="flex  space-x-4 sm:text-base md:text-xl font-lobster font-bold">
+          <div className="flex  space-x-4 sm:text-base md:text-base font-lobster font-bold">
             <div className="flex items-center space-x-2">
-              <img src={defaultUser} className="h-10 w-10 rounded-full" alt="User Profile" />
-              <span className="text-gray-700 text-sm">
+              <img src={defaultUser} className="h-5 w-5 sm:h-6 sm:w-6 md:h-10 md:w-10 rounded-full" alt="User Profile" />
+              <span className="text-gray-700 text-xs sm:text-base md:text-xl">
                 {firstName && lastName ? `${firstName} ${lastName}` : 'Guest'}
               </span>
             </div>
 
             {/* Language Selection */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 text-xs sm:text-base md:text-xl ">
               <FaGlobe className="text-gray-700" />
               <select
                 value={selectedLanguage}
