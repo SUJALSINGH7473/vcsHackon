@@ -177,6 +177,10 @@ Finally, start the development server by running:
 ### Admin Dashboard
 ![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/356c2c65-9fe0-437b-b3cb-e90f0d298274)
 
+### About Us
+![image](https://github.com/Tushar-022/vcsHackon/assets/96460114/a353bdd1-6a50-41af-a3bd-7494804858c8)
+
+
 
 ## Future Scope
 In the future, we plan to integrate video solutions within our application. Users will be able to access video tutorials related to their queries. They can pause the video at any point and ask the virtual assistant about specific steps being implemented at that timestamp. Here’s how it will work:
