@@ -1,10 +1,10 @@
-# Virtual Customer Service - Your Satisfaction, Our Priority.
+# Sahayak - Your Satisfaction, Our Priority.
 
 ---
 
 
 ## Overview
-Virtual Customer Service is a web-based application designed to streamline customer support for `Amazon`. It replaces traditional chatbots by taking user input through voice and providing accurate responses based on the query. With support for multiple languages, it offers a simple and efficient way to help customers around the world.
+`Sahayak` : Virtual Customer Service is a web-based application designed to streamline customer support for `Amazon`. It replaces traditional chatbots by taking user input through voice and providing accurate responses based on the query. With support for multiple languages, it offers a simple and efficient way to help customers around the world.
 ## Key Features
 
 ### 1. Automated Voice Call Assistant
@@ -31,12 +31,13 @@ Users can ask questions related to previous queries during the same call. They c
 Our model offers different language accents based on user preference, enhancing the clarity and understanding of the responses.
 
 ### 6. Sentiment Annalysis
-our model return the response of the query by considering the sentiment of the user that what is the mood of the user currently
+Our model generates responses based on the user's query, taking into account the user's current mood and sentiment.
 
 ## Architecture
 
 
-![WhatsApp Image 2024-06-20 at 02 47 08_ba7c55a2](https://github.com/Tushar-022/vcsHackon/assets/100035802/01323c30-00c6-441d-808a-7ee05b3e8e2e)
+![Architecture 1](https://github.com/Tushar-022/vcsHackon/assets/100035802/dadcf169-5c79-4bbd-996d-5d95c57faf77)
+
 
 
 
@@ -48,7 +49,8 @@ This project is divided into two main parts: the frontend and the backend.
 
 The frontend is developed using `ReactJS` and `Redux Toolkit`. It is structured as follows:
 
-![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/bd1bc2b3-e5a6-40db-b29f-c45fb2796ee7)
+![image](https://github.com/Tushar-022/vcsHackon/assets/100035802/d31bb650-2cf9-467d-bc2f-fab743ecba59)
+
 
 
 ### Backend
@@ -188,7 +190,7 @@ In the future, we plan to integrate video solutions within our application. User
 - **Enhanced Personalization**: Improve personalization algorithms by incorporating machine learning techniques that adapt to user preferences and behaviors in real-time.
 
 ## Conclusion
-Hackon by Amazon, developed by Team Dynamo, enhances customer support through state-of-the-art AI and NLP technologies. It addresses current challenges and paves the way for future innovations in virtual customer service.
+Sahayak, developed by Team Dynamo, enhances customer support through state-of-the-art AI and NLP technologies. It addresses current challenges and paves the way for future innovations in virtual customer service.
 ## About Team
 For more information about our team members, please visit our LinkedIn profiles:
 
