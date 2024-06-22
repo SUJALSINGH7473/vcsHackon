@@ -5,6 +5,11 @@
 
 ## Overview
 `Sahayak` : Virtual Customer Service is a web-based application designed to streamline customer support for `Amazon`. It replaces traditional chatbots by taking user input through voice and providing accurate responses based on the query. With support for multiple languages, it offers a simple and efficient way to help customers around the world.
+
+#### Youtube Video Link:   
+#### Website Link: https://vcs-hackon-kohl.vercel.app/
+#### About us link: https://vcs-about-us.vercel.app/
+
 ## Key Features
 
 ### 1. Automated Voice Call Assistant
