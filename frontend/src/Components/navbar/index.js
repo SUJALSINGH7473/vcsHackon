@@ -16,7 +16,7 @@ class Navbar extends Component {
     firstName: '',
     lastName: '',
     selectedLanguage: 'English',
-    isOpen: false // State to handle the toggle of the menu
+    
   };
 
   async componentDidMount() {
@@ -69,12 +69,10 @@ class Navbar extends Component {
     }
   };
 
-  toggleMenu = () => {
-    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
-  };
+ 
 
   render() {
-    const { firstName, lastName, selectedLanguage, isOpen } = this.state;
+    const { firstName, lastName, selectedLanguage } = this.state;
 
     return (
       <nav className="bg-white border-b border-gray-200">
@@ -123,29 +121,6 @@ class Navbar extends Component {
               </button>
             </div>
           </div>
-
-          {/* Hamburger Menu Icon */}
-          {/* <div className="flex lg:hidden ml-4">
-            <button onClick={this.toggleMenu} className="text-gray-700 hover:text-black transition duration-300">
-              <FaBars className="text-2xl" />
-            </button>
-          </div> */}
-
-          {/* Navigation Buttons */}
-          {/* <div className={`lg:flex ${isOpen ? 'block' : 'hidden'} flex-col lg:flex-row justify-end lg:space-x-10 flex-grow mt-4 lg:mt-0`}>
-            <a href="/main" className="flex items-center text-gray-700 hover:text-black transition duration-300 underline">
-              <FaHome className="mr-2 text-gray-500" />
-              <span className="font-bold">Home</span>
-            </a>
-            <a target='blank' href="https://vcs-about-us.vercel.app/" className="flex items-center text-gray-700 hover:text-black transition duration-300">
-              <FaInfoCircle className="mr-2 text-gray-500" />
-              <span>About Us</span>
-            </a>
-            <a href="/privacy" className="flex items-center text-gray-700 hover:text-black transition duration-300">
-              <FaLock className="mr-2 text-gray-500" />
-              <span>Privacy Policy</span>
-            </a>
-          </div> */}
         </div>
       </nav>
     );
